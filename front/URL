@@ -1,0 +1,18 @@
+URL and Acctions
+
+/		        Home, infosida
+/random		    Generate gridd pattern by random
+/pattern	    Generate by predetermend patterns
+/forms		    Generate by added forms
+
+/image		    Generate by imported img files
+@import
+		
+/temperature	Generate by temprature, date and location
+/free		    Generate by free paint
+/dashbord		My projects dashbord
+/new		    Add new projects
+
+/account	    Make new account
+@login		    Login
+@logout		    Logout
