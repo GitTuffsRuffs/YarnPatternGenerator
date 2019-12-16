@@ -11,12 +11,14 @@
         display: flex;
         flex-direction: row;
         flex-grow: 1;
+        margin-right: 20px;
+        margin-left: 20px;
     }
 
     #MainRandom > div {
         background-color: #fdfdfd;
         border: solid #eeeeee 1px;
-        margin: 10px;
+        margin: 5px;
         padding: 5px;
         border-radius: 2px;
     }

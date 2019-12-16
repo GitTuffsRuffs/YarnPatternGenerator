@@ -1,5 +1,5 @@
 <template>
-    <main id="Main">
+    <main id="MainHome">
         <div id="Info">
             <p>On this page you can use some of our features to generate a pattern for blankets of different sizes for all of you who like granny squares.</p>
             <p>This web app is built with Html, less, Vue, Typescript, Laravel / php, MariaDB / SQL.</p>
@@ -12,14 +12,14 @@
 </template>
 
 <style lang="less">
-    main {
+    #MainHome {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
         align-items: center;
     }
 
-    main > div {
+    #MainHome > div {
         background-color: #fdfdfd;
         border: solid #eeeeee 1px;
         margin: 10px;
@@ -27,14 +27,14 @@
         border-radius: 2px;
     }
 
-    #Info {
+    #MainHome > #Info {
         width: 600px;
         font-size: 16pt;
         padding: 30px;
         margin-top: 40px;
     }
 
-    #Account {
+    #MainHome > #Account {
         background-color: #ffb2d8;
         transition: background-color .5s;
         font-size: 16pt;
