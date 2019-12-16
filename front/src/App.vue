@@ -1,13 +1,6 @@
 <template>
     <div id="app">
-        <header id="TopMenu">
-            <h1>Yarn Pattern Generator</h1>
-
-            <ul>
-                <li>My projects</li>
-                <li>Login/Logut</li>
-            </ul>
-        </header>
+        <YearnHeader/>
 
         <div id="ContentAll">
             <ul id="SideMenu">
@@ -37,55 +30,6 @@
         margin: 0;
     }
 
-    header {
-        display: flex;
-        flex-direction: row;
-        font-family: 'Merienda', cursive;
-        border-bottom: 3px dashed #dddddd;
-        margin-bottom: 20px;
-    }
-
-    header > h1 {
-        flex-grow: 1;
-        margin-top: 20px;
-        margin-right: 20px;
-        margin-left: 60px;
-        margin-bottom: -10px;
-        font-size: 38pt;
-    }
-
-    header > ul {
-        display: flex;
-        flex-direction: row;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        font-size: 16pt;
-    }
-
-    header > ul > li {
-        background-color: lawngreen;
-        margin-right: 1em;
-        margin-left: -2em;
-        padding-top: 5px;
-        padding-right: 1.5em;
-        padding-left: 2em;
-        clip-path: polygon(1.5em 0, 100% 0, calc(100% - 1em) 2em, 0.5em 2em);
-        transition: clip-path .5s;
-    }
-
-    header > ul > li:hover {
-        clip-path: polygon(1.5em 0, 100% 0, calc(100% - 1.5em) 3em, 0 3em);
-    }
-
-    header > ul > li:nth-child(1) {
-        background-color: #b08cff;
-    }
-
-    header > ul > li:nth-child(2) {
-        background-color: #a23eff;
-    }
-
     #ContentAll {
         display: flex;
         flex-direction: row;
@@ -102,7 +46,6 @@
     }
 
     #SideMenu > li {
-        background-color: lawngreen;
         margin-bottom: 10px;
         padding: 10px;
         padding-right: 70px;
@@ -123,7 +66,7 @@
     }
 
     #SideMenu > li:nth-child(3) {
-        background-color: #5dff7a;
+        background-color: #61ff8a;
     }
 
     #SideMenu > li:nth-child(4) {
@@ -169,3 +112,10 @@
         text-decoration: none;
     }
 </style>
+<script>
+    import YearnHeader from "./components/YearnHeader";
+
+    export default {
+        components: {YearnHeader}
+    }
+</script>
