@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+//import Random from "../views/Random.vue";
 
 Vue.use(VueRouter);
 
@@ -9,9 +10,9 @@ const routes = [
         path: "/",
         name: "home",
         component: Home
-        /*
-    },
-    {
+    }
+    /*
+    ,{
       path: "/about",
       name: "about",
       // route level code-splitting
@@ -19,8 +20,13 @@ const routes = [
       // which is lazy-loaded when the route is visited.
       component: () =>
         import("../views/About.vue")
-     */
-    }
+
+    },
+    {
+        path: "/random",
+        name: "random",
+        component: Random
+    }*/
 ];
 
 const router = new VueRouter({
