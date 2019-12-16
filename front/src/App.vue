@@ -47,8 +47,8 @@
 </style>
 <script>
     import YearnHeader from "./components/YearnHeader";
-    import YarnMenu from "./YarnMenu";
-    import YarnFooter from "./YarnFooter";
+    import YarnMenu from "./components/YarnMenu";
+    import YarnFooter from "./components/YarnFooter";
 
     export default {
         components: {YarnFooter, YarnMenu, YearnHeader}
