@@ -1,21 +1,21 @@
 # YarnPatternGenerator
 
 Project web application to save projects and generator to make blankets and patterns for blankets.
-HTML5, SCSS/CSS3, React, Typescript, Laravel/php, Mariadb/SQL
+ HTML5, SCSS/CSS3, React, Typescript, Laravel/php, Mariadb/SQL
 
-* Calculate how many squares per color
-* Calculate total square amount
-* If size of square is inserted calculate size of blanket (cm).
-* Dropdown yarn - Category
+- Calculate how many squares per color
+- Calculate total square amount
+- If size of square is inserted calculate size of blanket (cm).
+- Dropdown yarn - Category
 
 	- Corner To Corner overlay on free pattern generator.
-11|19|20|24|25
-10|12|18|21|23
-04|09|13|17|22
-03|05|08|14|16
-01|02|06|07|15
+		- 11|19|20|24|25
+		- 10|12|18|21|23
+		- 04|09|13|17|22
+		- 03|05|08|14|16
+		- 01|02|06|07|15
 
-	1 Database of yarn colors, 
+	1. Database of yarn colors, 
 		- color, 
 		- name, 
 		- number, 
@@ -53,14 +53,14 @@ HTML5, SCSS/CSS3, React, Typescript, Laravel/php, Mariadb/SQL
 
 ---------------------
 
-Grid system
-	10x10
+- Grid system
+	- 10x10
 
-Log in
+- Log in
 	- Username - Email
 	- Password
 
-Save generated pattern
+- Save generated pattern
 	- Save projects
 	- Yarn
 	- Name
@@ -76,14 +76,14 @@ Save generated pattern
 
 ---------------------------------------------------------
 
-Planerin denna veckan:
+- Planerin denna veckan:
 
-49 - Krav och View drafts.
-50 - Frontend base design - HTML, CSS, REACT
-51 - Generate by pattern - Database, React component draft.
-52 - Generate by pattern
-01 - Free paint pattern
-02 - ...
-03 - Testing
-04 - Anything that needs extra time.
-05 - redovisning
+- 49 - Krav och View drafts.
+- 50 - Frontend base design - HTML, CSS, REACT
+- 51 - Generate by pattern - Database, React component draft.
+- 52 - Generate by pattern
+- 01 - Free paint pattern
+- 02 - ...
+- 03 - Testing
+- 04 - Anything that needs extra time.
+- 05 - redovisning
