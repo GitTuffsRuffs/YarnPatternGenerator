@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Main</title>
+        <link href="https://fonts.googleapis.com/css?family=Merienda:400,700&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <header id="TopMenu">
+            <h1>Yarn Pattern Generator</h1>
+
+            <ul>
+                <li>My projects</li>
+                <li>Login/Logut</li>
+            </ul>
+        </header>
+
+        <div id="ContentAll">
+            <ul id="SideMenu">
+                <li>By Random</li>
+                <li>By Patterns</li>
+                <li>By Forms</li>
+                <li>By Import</li>
+                <li>By Temperature</li>
+                <li>Free Paint</li>
+            </ul>
+
+            <main id="Main">
+                <div id="Settings">1.Settings</div>
+                <div id="Grid">2.Grid</div>
+                <div id="Color">3.Colors</div>
+            </main>
+        </div>
+
+        <footer id="Footer">
+            Made by: Tuffs Ruffs @<a href="https://github.com/GitTuffsRuffs/YarnPatternGenerator">GitTuffsRuffs/YarnPatternGenerator</a>
+        </footer>
+
+        <style>
+            body {
+                background-color: #f8f8f8;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+                margin: 0;
+            }
+
+            header {
+                display: flex;
+                flex-direction: row;
+                font-family: 'Merienda', cursive;
+                border-bottom: 3px dashed #dddddd;
+                margin-bottom: 20px;
+            }
+
+            header > h1 {
+                flex-grow: 1;
+                margin-top: 20px;
+                margin-right: 20px;
+                margin-left: 60px;
+                margin-bottom: -10px;
+                font-size: 38pt;
+            }
+
+            header > ul {
+                display: flex;
+                flex-direction: row;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                font-size: 16pt;
+            }
+
+            header > ul > li {
+                background-color: lawngreen;
+                margin-right: 1em;
+                margin-left: -2em;
+                padding-top: 5px;
+                padding-right: 1.5em;
+                padding-left: 2em;
+                clip-path: polygon(1.5em 0, 100% 0, calc(100% - 1em) 2em, 0.5em 2em);
+                transition: clip-path .5s;
+            }
+
+            header > ul > li:hover {
+                clip-path: polygon(1.5em 0, 100% 0, calc(100% - 1.5em) 3em, 0 3em);
+            }
+
+            header > ul > li:nth-child(1) {
+                background-color: #b08cff;
+            }
+
+            header > ul > li:nth-child(2) {
+                background-color: #a23eff;
+            }
+
+            #ContentAll {
+                display: flex;
+                flex-direction: row;
+                flex-grow: 1;
+            }
+
+            #SideMenu {
+                margin: 0;
+                padding: 0;
+                padding-top: 45px;
+                list-style: none;
+                font-size: 22px;
+                font-family: 'Merienda', cursive;
+            }
+
+            #SideMenu > li {
+                background-color: lawngreen;
+                margin-bottom: 10px;
+                padding: 10px;
+                padding-right: 70px;
+                clip-path: polygon(0 0, calc(100% - 40px) 0, calc(100% - 60px) 100%, 0 100%);
+                transition: clip-path .5s;
+            }
+
+            #SideMenu > li:hover {
+                clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 100%, 0 100%);
+            }
+
+            #SideMenu > li:nth-child(1) {
+                background-color: #df87ff;
+            }
+
+            #SideMenu > li:nth-child(2) {
+                background-color: #6fa2e8;
+            }
+
+            #SideMenu > li:nth-child(3) {
+                background-color: #5dff7a;
+            }
+
+            #SideMenu > li:nth-child(4) {
+                background-color: #EBE480;
+            }
+
+            #SideMenu > li:nth-child(5) {
+                background-color: #FFAE73;
+            }
+
+            #SideMenu > li:nth-child(6) {
+                background-color: #FF796C;
+            }
+
+
+            main {
+                display: flex;
+                flex-direction: row;
+                flex-grow: 1;
+            }
+
+            main > div {
+                background-color: #ffffff;
+                border: solid #eeeeee 1px;
+                margin: 10px;
+                padding: 5px;
+                border-radius: 2px;
+            }
+
+            #Grid {
+                flex-grow: 1;
+            }
+
+            footer {
+                text-align: center;
+                padding: 5px;
+                font-size: 12pt;
+                color: #333333;
+                border-top: 3px dashed #dddddd;
+            }
+            footer a {
+                color: inherit;
+                text-decoration: none;
+            }
+        </style>
+
+    </body>
+</html>
