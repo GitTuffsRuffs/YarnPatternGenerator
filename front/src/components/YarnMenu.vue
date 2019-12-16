@@ -1,6 +1,6 @@
 <template>
     <ul id="SideMenu">
-        <li>By Random</li>
+        <li><router-link to="/random">By Random</router-link></li>
         <li>By Patterns</li>
         <li>By Forms</li>
         <li>By Import</li>
@@ -56,6 +56,11 @@
 
             &:nth-child(6) {
                 background-color: #FF796C;
+            }
+
+            a {
+                color: inherit;
+                text-decoration: none;
             }
         }
     }

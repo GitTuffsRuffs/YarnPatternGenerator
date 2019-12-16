@@ -7,7 +7,7 @@
             <p>You can create an account by pressing the button below.</p>
         </div>
         <div id="Account"><a href="">Create your account</a></div>
-        <div id="SlideShow">"Slide show picturs"</div>
+        <div id="SlideShow">"Slide show pictures"</div>
     </main>
 </template>
 

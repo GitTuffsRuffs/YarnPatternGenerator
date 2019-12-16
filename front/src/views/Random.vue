@@ -1,19 +1,19 @@
 <template>
-    <main id="Main">
+    <main id="MainRandom">
         <div id="Settings">1.Settings</div>
         <div id="Grid">2.Grid</div>
         <div id="Color">3.Colors</div>
     </main>
 </template>
 
-<style>
-    main {
+<style lang="less">
+    #MainRandom {
         display: flex;
         flex-direction: row;
         flex-grow: 1;
     }
 
-    main > div {
+    #MainRandom > div {
         background-color: #fdfdfd;
         border: solid #eeeeee 1px;
         margin: 10px;
@@ -27,8 +27,6 @@
 </style>
 
 <script>
-    // @ is an alias to /src
-
     export default {
         name: "random"
     };

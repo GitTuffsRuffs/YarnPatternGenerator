@@ -1,6 +1,6 @@
 <template>
     <header id="TopMenu">
-        <h1>Yarn Pattern Generator</h1>
+        <h1><router-link to="/">Yarn Pattern Generator</router-link></h1>
 
         <ul>
             <li>My projects</li>
@@ -29,6 +29,11 @@
             margin-left: 60px;
             margin-bottom: -10px;
             font-size: 38pt;
+
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
         }
 
         > ul {
