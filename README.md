@@ -8,12 +8,12 @@ Project web application to save projects and generator to make blankets and patt
 - If size of square is inserted calculate size of blanket (cm).
 - Dropdown yarn - Category
 
-	- Corner To Corner overlay on free pattern generator.
-		- 11|19|20|24|25
-		- 10|12|18|21|23
-		- 04|09|13|17|22
-		- 03|05|08|14|16
-		- 01|02|06|07|15
+- Corner To Corner overlay on free pattern generator.
+	- 11|19|20|24|25
+	- 10|12|18|21|23
+	- 04|09|13|17|22
+	- 03|05|08|14|16
+	- 01|02|06|07|15
 
 	1. Database of yarn colors, 
 		- color, 
@@ -53,14 +53,14 @@ Project web application to save projects and generator to make blankets and patt
 
 ---------------------
 
-- Grid system
+* Grid system
 	- 10x10
 
-- Log in
+* Log in
 	- Username - Email
 	- Password
 
-- Save generated pattern
+* Save generated pattern
 	- Save projects
 	- Yarn
 	- Name
@@ -76,14 +76,13 @@ Project web application to save projects and generator to make blankets and patt
 
 ---------------------------------------------------------
 
-- Planerin denna veckan:
-
-- 49 - Krav och View drafts.
-- 50 - Frontend base design - HTML, CSS, REACT
-- 51 - Generate by pattern - Database, React component draft.
-- 52 - Generate by pattern
-- 01 - Free paint pattern
-- 02 - ...
-- 03 - Testing
-- 04 - Anything that needs extra time.
-- 05 - redovisning
+* Planerin denna veckan:
+	- 49 Krav och View drafts.
+	- 50 Frontend base design - HTML, CSS, REACT
+	- 51 Generate by pattern - Database, React component draft.
+	- 52 Generate by pattern
+	- 01 Free paint pattern
+	- 02 ...
+	- 03 Testing
+	- 04 Anything that needs extra time.
+	- 05 redovisning
