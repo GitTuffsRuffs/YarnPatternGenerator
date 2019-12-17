@@ -8,6 +8,7 @@ import Image from "../views/Image.vue";
 import Temperature from "../views/Temperature.vue";
 import FreePaint from "../views/FreePaint.vue";
 import Projects from "../views/Projects.vue";
+import NewProject from "../views/NewProject.vue";
 
 Vue.use(VueRouter);
 
@@ -51,6 +52,11 @@ const routes = [
         path: "/projects",
         name: "projects",
         component: Projects
+    },
+    {
+        path: "/newproject",
+        name: "newproject",
+        component: NewProject
     }
     /*
     ,{

@@ -3,9 +3,11 @@
         <li><router-link to="/random">By Random</router-link></li>
         <li><router-link to="/patterns">By Patterns</router-link></li>
         <li><router-link to="/forms">By Forms</router-link></li>
-        <li><router-link to="/import">By Image</router-link></li>
+        <li><router-link to="/image">By Image</router-link></li>
         <li><router-link to="/temperature">By Temperature</router-link></li>
         <li><router-link to="/freepaint">Free Paint</router-link></li>
+        <li></li>
+        <li>Save</li> <!-- If eny generators or othere changes show save button, Not on Home, or My project site. -->
     </ul>
 </template>
 <script>
@@ -56,6 +58,13 @@
 
             &:nth-child(6) {
                 background-color: #FF796C;
+            }
+
+            &:nth-child(7) {
+                background-color: rgba(255, 81, 83, 0);
+            }
+            &:nth-child(8) {
+                background-color: rgb(255, 81, 83);
             }
 
             a {

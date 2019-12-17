@@ -1,8 +1,52 @@
 <template>
     <main id="MainRandom">
-        <div id="Settings">1.Settings</div>
-        <div id="Grid">2.Grid</div>
-        <div id="Color">3.Colors</div>
+        <div id="Settings">
+
+            <div id="SettingsAll">
+
+                <div id="Square">
+                    <span>Square</span>
+                    <ol>
+                        <li>Height</li>
+                        <li>Width</li>
+                        <li>Square size</li>
+                        <li>Data: H cm - W cm</li>
+                    </ol>
+                </div>
+
+                <div>
+                    <span>Centimeter</span>
+                    <ol>
+                        <li>Height</li>
+                        <li>Width</li>
+                        <li>Square size</li>
+                        <li>Data: H cm - W cm</li>
+                    </ol>
+                </div>
+
+                <input type="checkbox" name="c2c" value="c2c">Coner to coner chart
+            </div>
+        </div>
+
+        <div id="Grid">
+            2.Grid
+        </div>
+
+        <div id="Color">
+            <div id="ColorSettings">
+                Color par square [           ]
+                [] Color (not be same next to eache othere)
+            </div>
+
+            <div>
+            Database droppdown brand [ brands ]
+            Color wheel []
+
+            added color (color amunt, small, medium, allot)
+            </div>
+
+        </div>
+
     </main>
 </template>
 
@@ -25,6 +69,10 @@
 
     #Grid {
         flex-grow: 1;
+    }
+
+    #Square {
+        border: solid #333333 2px;
     }
 </style>
 
