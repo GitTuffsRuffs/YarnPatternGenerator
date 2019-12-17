@@ -1,11 +1,11 @@
 <template>
     <ul id="SideMenu">
         <li><router-link to="/random">By Random</router-link></li>
-        <li>By Patterns</li>
-        <li>By Forms</li>
-        <li>By Import</li>
-        <li>By Temperature</li>
-        <li>Free Paint</li>
+        <li><router-link to="/patterns">By Patterns</router-link></li>
+        <li><router-link to="/forms">By Forms</router-link></li>
+        <li><router-link to="/import">By Image</router-link></li>
+        <li><router-link to="/temperature">By Temperature</router-link></li>
+        <li><router-link to="/freepaint">Free Paint</router-link></li>
     </ul>
 </template>
 <script>

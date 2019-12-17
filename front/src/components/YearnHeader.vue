@@ -3,7 +3,7 @@
         <h1><router-link to="/">Yarn Pattern Generator</router-link></h1>
 
         <ul>
-            <li>My projects</li>
+            <li><router-link to="/projects">My projects</router-link></li>
             <li>Login/Logut</li>
         </ul>
     </header>
@@ -63,6 +63,11 @@
 
                 &:nth-child(2) {
                     background-color: #ff77b4;
+                }
+
+                a {
+                    color: inherit;
+                    text-decoration: none;
                 }
             }
         }
