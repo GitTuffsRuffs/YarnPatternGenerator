@@ -1,6 +1,6 @@
 <template>
     <main id="MainBord">
-        <div id="NewProject"><a href="">New Project</a></div>
+        <div id="NewProject"><router-link to="/newproject">New Project</router-link></div>
 
         <div id="ProjectBord">
             <div>
