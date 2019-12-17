@@ -6,7 +6,6 @@
             <div>
                 <div class="ProjectHeader">
                     <span>Projects</span>
-                    <span/>
                     <span>Started</span>
                 </div>
 
@@ -20,19 +19,16 @@
 
             <div class="ProjectHeader">
                 <span>Projects</span>
-                <span/>
                 <span>Paused</span>
             </div>
 
             <div class="ProjectHeader">
                 <span>Projects</span>
-                <span/>
                 <span>Done</span>
             </div>
 
             <div class="ProjectHeader">
                 <span>Projects</span>
-                <span/>
                 <span>Canceled</span>
             </div>
         </div>
@@ -71,10 +67,10 @@
         display: flex;
         flex-direction: row;
         border-bottom: 2px dashed #dddddd;
-    }
 
-    .ProjectHeader > span:nth-child(2) {
-        flex-grow: 1;
+        > span:first-child {
+            flex-grow: 1;
+        }
     }
 
     ol {

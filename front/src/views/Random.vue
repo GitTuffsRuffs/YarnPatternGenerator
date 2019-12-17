@@ -24,7 +24,10 @@
                     </ol>
                 </div>
 
-                <input type="checkbox" name="c2c" value="c2c">Coner to coner chart
+                <label>
+                    <input type="checkbox" name="c2c" value="c2c">
+                    <span>Coner to coner chart</span>
+                </label>
             </div>
         </div>
 

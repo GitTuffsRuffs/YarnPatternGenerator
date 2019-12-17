@@ -4,15 +4,22 @@
 
         <ul>
             <li><router-link to="/projects">My projects</router-link></li>
-            <li>Login/Logut</li>
+            <li @click="showLogin">Login</li>
         </ul>
     </header>
 </template>
+
 <script>
     export default {
-        name: 'YearnHeader'
+        name: 'YearnHeader',
+        methods: {
+            showLogin() {
+                this.$store.commit("showMessedgeBox", "Login");
+            },
+        },
     }
 </script>
+
 <style lang="less">
 
     header {

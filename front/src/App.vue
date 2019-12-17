@@ -1,15 +1,25 @@
 <template>
     <div id="app">
-            <YearnHeader/>
-
-            <div id="ContentAll">
-                <YarnMenu/>
-                <router-view/>
-            </div>
-
-            <YarnFooter/>
+        <YearnHeader/>
+        <div id="ContentAll">
+            <YarnMenu/>
+            <router-view/>
+        </div>
+        <YarnFooter/>
+        <Shadow/>
     </div>
 </template>
+
+<script>
+    import YearnHeader from "./components/YearnHeader";
+    import YarnMenu from "./components/YarnMenu";
+    import YarnFooter from "./components/YarnFooter";
+    import Shadow from "./components/Shadow";
+
+    export default {
+        components: {Shadow, YarnFooter, YarnMenu, YearnHeader},
+    }
+</script>
 
 <style lang="less">
     body, #app {
@@ -32,12 +42,3 @@
     }
 
 </style>
-<script>
-    import YearnHeader from "./components/YearnHeader";
-    import YarnMenu from "./components/YarnMenu";
-    import YarnFooter from "./components/YarnFooter";
-
-    export default {
-        components: {YarnFooter, YarnMenu, YearnHeader}
-    }
-</script>

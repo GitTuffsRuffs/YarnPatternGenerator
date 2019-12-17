@@ -75,7 +75,7 @@
             &.area {
                 flex-grow: 1;
                 flex-direction: column;
-                margin-bottom: 0px;
+                margin-bottom: 0;
 
                 > textarea {
                     flex-grow: 1;
