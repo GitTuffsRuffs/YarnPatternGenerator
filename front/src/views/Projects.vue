@@ -46,12 +46,12 @@
 <style lang="less">
     #MainBord {
         display: flex;
-        flex-direction: row;
-        flex-grow: 1;
-        margin-top: 100px;
         margin-right: 20px;
         margin-left: 20px;
         font-size: 16pt;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        flex-grow: 1;
     }
 
     #MainBord > div {
@@ -81,14 +81,14 @@
         list-style-type: none;
     }
 
-    #NewProject {
+    #MainBord > #NewProject {
         background-color: #ffb2d8;
         transition: background-color .5s;
         font-size: 16pt;
         text-align: center;
         margin: 20px;
-        width: 180px;
         clip-path: polygon(1.5em 0, 100% 0, calc(100% - 1em) 2em, 0.5em 2em);
+        width: 100%;
 
         a {
             color: inherit;

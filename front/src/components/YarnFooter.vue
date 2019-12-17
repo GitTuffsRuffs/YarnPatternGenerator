@@ -16,6 +16,7 @@
         font-size: 12pt;
         color: #333333;
         border-top: 3px dashed #dddddd;
+        background-color: rgba(255,255,255,0.5);
 
         a {
             color: inherit;

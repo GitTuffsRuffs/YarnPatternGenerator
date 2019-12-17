@@ -1,6 +1,5 @@
 <template>
     <div id="app">
-        <div id="BGimage">
             <YearnHeader/>
 
             <div id="ContentAll">
@@ -9,7 +8,6 @@
             </div>
 
             <YarnFooter/>
-        </div>
     </div>
 </template>
 
@@ -22,13 +20,9 @@
         margin: 0;
     }
 
-    #BGimage {
+    #app {
         background-image: url("assets/img/Squer4.png");
         background-repeat: no-repeat;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        margin: 0;
     }
 
     #ContentAll {
