@@ -5,7 +5,7 @@
             <div id="SettingsAll">
 
                 <div id="Square">
-                    <span>Square</span>
+                    <span class="ProjectHeader">Square</span>
                     <ol>
                         <li>Height</li>
                         <li>Width</li>
@@ -15,7 +15,7 @@
                 </div>
 
                 <div>
-                    <span>Centimeter</span>
+                    <span class="ProjectHeader">Centimeter</span>
                     <ol>
                         <li>Height</li>
                         <li>Width</li>
@@ -34,15 +34,14 @@
 
         <div id="Color">
             <div id="ColorSettings">
-                Color par square [           ]
-                [] Color (not be same next to eache othere)
+                <span>Color par square </span>
+                <span>[] Color (not be same next to eache othere)</span>
             </div>
 
             <div>
-            Database droppdown brand [ brands ]
-            Color wheel []
-
-            added color (color amunt, small, medium, allot)
+                <span>Database droppdown brand [ brands ]</span>
+                <span>Color wheel []</span>
+                <span> added color (color amunt, small, medium, allot)</span>
             </div>
 
         </div>
@@ -57,6 +56,7 @@
         flex-grow: 1;
         margin-right: 20px;
         margin-left: 20px;
+        font-size: 1em;
     }
 
     #MainRandom > div {
@@ -71,8 +71,20 @@
         flex-grow: 1;
     }
 
-    #Square {
-        border: solid #333333 2px;
+    #SettingsAll > div {
+        padding-left: 5px;
+        padding-right: 20px;
+    }
+
+    .ProjectHeader {
+        display: flex;
+        flex-direction: row;
+        border-bottom: 2px dashed #dddddd;
+    }
+
+    #Color > div > span {
+        display: flex;
+        flex-direction: row;
     }
 </style>
 
