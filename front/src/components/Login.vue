@@ -10,7 +10,6 @@
             <input v-model="password" type="password"/>
         </label>
 
-        <!-- TODO: FIX, copy to othere buttons -->
         <button id="LoginButton" type="button" @click="login">Login</button>
     </div>
 </template>
@@ -65,6 +64,7 @@
         width: 280px;
         padding: 3px;
         clip-path: polygon(1.5em 0, 100% 0, calc(100% - 1em) 2em, 0.5em 2em);
+        border-style: none;
 
         a {
             color: inherit;
