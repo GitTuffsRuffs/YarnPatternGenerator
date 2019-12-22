@@ -10,7 +10,8 @@
             <input v-model="password" type="password"/>
         </label>
 
-        <div id="LoginButton" type="button" @click="login">Login</div>
+        <!-- TODO: FIX, copy to othere buttons -->
+        <button id="LoginButton" type="button" @click="login">Login</button>
     </div>
 </template>
 
@@ -28,7 +29,7 @@
                 window.console.log(["Login", this.username, this.password]);
             },
         },
-    }
+    };
 </script>
 
 <style lang="less">
