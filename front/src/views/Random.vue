@@ -1,232 +1,264 @@
 <template>
-    <main id="MainRandom">
+  <main id="MainRandom">
+    <div id="SettingsAll">
+      <div>
+        <span
+          class="ProjectHeader"
+          @click="acctiveBoxToggle"
+          data-name="Square"
+        >
+          <span>Square</span>
+          <span v-if="activeBox !== 'Square'"> ▷ </span>
+          <span v-if="activeBox === 'Square'"> ▼ </span>
+        </span>
+        <div v-if="activeBox === 'Square'">
+          <span>Full blanket in square:</span>
+          <ol>
+            <li>
+              <label>
+                <span>Height:</span>
+                <input v-model="height" type="number" />
+              </label>
+            </li>
 
-        <div id="SettingsAll">
-            <div>
-                <span class="ProjectHeader" @click="acctiveBoxToggle" data-name="Square">
-                    <span>Square</span>
-                    <span v-if="activeBox !== 'Square' "> ▷ </span>
-                    <span v-if="activeBox === 'Square' "> ▼ </span>
-                </span>
-                <div v-if="activeBox === 'Square' ">
-                    <ol>
-                        <span>Full blanket in square:</span>
-                        <li>
-                            <label>
-                                <span>Height:</span>
-                                <input v-model="height" type="number"/>
-                            </label>
-                        </li>
+            <li>
+              <label>
+                <span>Width:</span>
+                <input v-model="width" type="number" />
+              </label>
+            </li>
 
-                        <li>
-                            <label>
-                                <span>Width:</span>
-                                <input v-model="width" type="number"/>
-                            </label>
-                        </li>
+            <li>
+              <label>
+                <span>Square size cm:</span>
+                <input v-model="size" type="number" step="0.01" />
+              </label>
+            </li>
 
-                        <li>
-                            <label>
-                                <span>Square size cm:</span>
-                                <input v-model="size" type="number" step="0.01"/>
-                            </label>
-                        </li>
-
-                        <li>
-                            <span>
-                                Data: {{ (height*size).toFixed(2) }} × {{ (width*size).toFixed(2) }} cm
-                            </span>
-                        </li>
-                    </ol>
-                </div>
-            </div> <!-- Square -->
-            <div>
-                <span class="ProjectHeader" @click="acctiveBoxToggle" data-name="Cent">
-                    <span>Centimeter</span>
-                    <span v-if="activeBox !== 'Cent' "> ▷ </span>
-                    <span v-if="activeBox === 'Cent' "> ▼ </span>
-                </span>
-                <div v-if="activeBox === 'Cent' ">
-                    <ol>
-                        <span>Full blanket in cm:</span>
-                        <li>
-                            <label>
-                                <span>Height cm:</span>
-                                <input v-model="height" type="number"/>
-                            </label>
-                        </li>
-
-                        <li>
-                            <label>
-                                <span>Width cm:</span>
-                                <input v-model="width" type="number"/>
-                            </label>
-                        </li>
-
-                        <li>
-                            <label>
-                                <span>Square size cm: {{ height*width }}</span>
-                            </label>
-                        </li>
-
-                        <li>
-                            <span>
-                                Data: {{ (height*size).toFixed(2) }} × {{ (width*size).toFixed(2) }} cm
-                            </span>
-                        </li>
-                    </ol>
-                </div>
-            </div> <!-- Centimeters -->
-            <div>
-                <span class="ProjectHeader" @click="acctiveBoxToggle" data-name="Cent">Other</span>
-
-                <label>
-                    <input type="checkbox" name="c2c" value="c2c">
-                    <span>Coner to coner chart</span>
-                </label>
-            </div> <!-- Other -->
+            <li>
+              <span>
+                Data: {{ (height * size).toFixed(2) }} ×
+                {{ (width * size).toFixed(2) }} cm
+              </span>
+            </li>
+          </ol>
         </div>
+      </div>
+      <!-- Square -->
+      <div>
+        <span class="ProjectHeader" @click="acctiveBoxToggle" data-name="Cent">
+          <span>Centimeter</span>
+          <span v-if="activeBox !== 'Cent'"> ▷ </span>
+          <span v-if="activeBox === 'Cent'"> ▼ </span>
+        </span>
+        <div v-if="activeBox === 'Cent'">
+          <span>Full blanket in cm:</span>
+          <ol>
+            <li>
+              <label>
+                <span>Height cm:</span>
+                <input v-model="height" type="number" />
+              </label>
+            </li>
 
-        <div id="Grid"> <!-- Grid -->
-            <canvas></canvas>
+            <li>
+              <label>
+                <span>Width cm:</span>
+                <input v-model="width" type="number" />
+              </label>
+            </li>
+
+            <li>
+              <label>
+                <span>Square size cm: {{ height * width }}</span>
+              </label>
+            </li>
+
+            <li>
+              <span>
+                Data: {{ (height * size).toFixed(2) }} ×
+                {{ (width * size).toFixed(2) }} cm
+              </span>
+            </li>
+          </ol>
         </div>
+      </div>
+      <!-- Centimeters -->
+      <div>
+        <span class="ProjectHeader" @click="acctiveBoxToggle" data-name="Cent"
+          >Other</span
+        >
 
-        <div id="Colors">
-            <div>
-                <span class="ProjectHeader">Color Settings</span>
-                <ol>
-                    <li>
-                        <label>
-                            <span>Color par square:</span>
-                            <input v-model="squareColors" type="number"/>
-                        </label>
-                    </li>
+        <label>
+          <input type="checkbox" name="c2c" value="c2c" />
+          <span>Coner to coner chart</span>
+        </label>
+      </div>
+      <!-- Other -->
+    </div>
 
-                    <li>
-                        <label>
-                            <input type="checkbox" name="colorBesideSame" value="colorBesideSame">
-                            <span>Colors (Not beside same color)</span>
-                        </label>
-                    </li>
-                </ol>
-            </div> <!-- Affects all color settings -->
-            <div> <!-- Color by Wheel -->
-                <span class="ProjectHeader" @click="activColorToggle" data-name="ColorWheel">
-                        <span>Color Wheel</span>
-                        <span v-if="activColor !== 'ColorWheel' "> ▷ </span>
-                        <span v-if="activColor === 'ColorWheel' "> ▼ </span>
-                    </span>
+    <div id="Grid">
+      <!-- Grid -->
+      <CanvasGrid />
+    </div>
 
-                <div v-if="activColor === 'ColorWheel' ">
-                    <span>Color Wheel:::::HERE</span><br> <!-- TODO: fix br in css -->
-                    <span>Added color (color amunt, small, medium, allot)</span><br> <!-- TODO: fix br in css -->
-                    <br> <!-- TODO: fix br in css -->
-                </div>
-            </div> <!-- Color by Wheel -->
-            <div> <!-- Colors by Brand -->
-                <span class="ProjectHeader" @click="activColorToggle" data-name="ColorBrand">
-                        <span>Colors by Brand</span>
-                        <span v-if="activColor !== 'ColorBrand' "> ▷ </span>
-                        <span v-if="activColor === 'ColorBrand' "> ▼ </span>
-                    </span>
+    <div id="Colors">
+      <div>
+        <span class="ProjectHeader">Color Settings</span>
+        <ol>
+          <li>
+            <label>
+              <span>Color par square:</span>
+              <input v-model="squareColors" type="number" />
+            </label>
+          </li>
 
-                <div v-if="activColor === 'ColorBrand' ">
-                    <span>ColorBrand::::::HERE</span><br> <!-- TODO: fix br in css -->
-                    <span> added color (color amunt, small, medium, allot)</span><br> <!-- TODO: fix br in css -->
-                    <br> <!-- TODO: fix br in css -->
-                </div>
-            </div> <!-- Color by Brand -->
+          <li>
+            <label>
+              <input
+                type="checkbox"
+                name="colorBesideSame"
+                value="colorBesideSame"
+              />
+              <span>Colors (Not beside same color)</span>
+            </label>
+          </li>
+        </ol>
+      </div>
+      <!-- Affects all color settings -->
+      <div>
+        <!-- Color by Wheel -->
+        <span
+          class="ProjectHeader"
+          @click="activColorToggle"
+          data-name="ColorWheel"
+        >
+          <span>Color Wheel</span>
+          <span v-if="activColor !== 'ColorWheel'"> ▷ </span>
+          <span v-if="activColor === 'ColorWheel'"> ▼ </span>
+        </span>
+
+        <div v-if="activColor === 'ColorWheel'">
+          <span>Color Wheel:::::HERE</span><br />
+          <!-- TODO: fix br in css -->
+          <span>Added color (color amunt, small, medium, allot)</span><br />
+          <!-- TODO: fix br in css -->
+          <br />
+          <!-- TODO: fix br in css -->
         </div>
-    </main>
+      </div>
+      <!-- Color by Wheel -->
+      <div>
+        <!-- Colors by Brand -->
+        <span
+          class="ProjectHeader"
+          @click="activColorToggle"
+          data-name="ColorBrand"
+        >
+          <span>Colors by Brand</span>
+          <span v-if="activColor !== 'ColorBrand'"> ▷ </span>
+          <span v-if="activColor === 'ColorBrand'"> ▼ </span>
+        </span>
+
+        <div v-if="activColor === 'ColorBrand'">
+          <span>ColorBrand::::::HERE</span><br />
+          <!-- TODO: fix br in css -->
+          <span> added color (color amunt, small, medium, allot)</span><br />
+          <!-- TODO: fix br in css -->
+          <br />
+          <!-- TODO: fix br in css -->
+        </div>
+      </div>
+      <!-- Color by Brand -->
+    </div>
+  </main>
 </template>
 
 <script lang="ts">
-    export default {
-        name: "random",
+import CanvasGrid from "../components/CanvasGrid";
 
-        data: () => ({
-            activeBox: "Square",
-            activColor: "ColorWheel",
+export default {
+  name: "random",
+  components: { CanvasGrid },
+  data: () => ({
+    activeBox: "Square",
+    activColor: "ColorWheel",
 
-            height: 5,
-            width: 5,
-            size: 0,
-            squareColors: 1,
-        }),
+    height: 5,
+    width: 5,
+    size: 0,
+    squareColors: 1
+  }),
 
-        methods: {
-            acctiveBoxToggle(event: Event) {
-                const span = event.currentTarget as HTMLSpanElement;
-                const name = span.getAttribute("data-name");
+  methods: {
+    acctiveBoxToggle(event: Event) {
+      const span = event.currentTarget as HTMLSpanElement;
+      const name = span.getAttribute("data-name");
 
-                if (name === 'Square') {
-                    this.activeBox = "Square";
-                } else if (name === 'Cent') {
-                    this.activeBox = "Cent";
-                }
-            },
+      if (name === "Square") {
+        this.activeBox = "Square";
+      } else if (name === "Cent") {
+        this.activeBox = "Cent";
+      }
+    },
 
-            activColorToggle(event: Event) {
-                const span = event.currentTarget as HTMLSpanElement;
-                const name = span.getAttribute("data-name");
+    activColorToggle(event: Event) {
+      const span = event.currentTarget as HTMLSpanElement;
+      const name = span.getAttribute("data-name");
 
-                if (name === 'ColorWheel') {
-                    this.activColor = "ColorWheel";
-                } else if (name === 'ColorBrand') {
-                    this.activColor = "ColorBrand";
-                }
-            },
-        }
-    };
+      if (name === "ColorWheel") {
+        this.activColor = "ColorWheel";
+      } else if (name === "ColorBrand") {
+        this.activColor = "ColorBrand";
+      }
+    }
+  }
+};
 </script>
 
 <style lang="less">
-    #MainRandom {
-        display: flex;
-        flex-direction: row;
-        flex-grow: 1;
-        margin-right: 20px;
-        margin-left: 20px;
-        font-size: 1.2em;
-    }
+#MainRandom {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  margin-right: 20px;
+  margin-left: 20px;
+  font-size: 1.2em;
+}
 
-    #MainRandom > div {
-        background-color: #fdfdfd;
-        border: solid #eeeeee 1px;
-        margin: 5px;
-        padding: 5px;
-        border-radius: 2px;
-    }
+#MainRandom > div {
+  background-color: #fdfdfd;
+  border: solid #eeeeee 1px;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 2px;
+}
 
-    #SettingsAll > div {
-        padding-left: 5px;
-        padding-right: 10px;
+#SettingsAll > div {
+  padding-left: 5px;
+  padding-right: 10px;
 
-        > div > ol {
-            padding: 10px;
-            margin-top: 5px;
-        }
-    }
+  > div > ol {
+    padding: 10px;
+    margin-top: 5px;
+  }
+}
 
-    #Grid {
-        flex-grow: 1;
-    }
+#Grid {
+  display: flex;
+  flex-grow: 1;
+}
 
-    canvas {
-        border: 1px black solid;
-        background-color: #6fa2e8;
-    }
+.ProjectHeader {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 2px dashed #dddddd;
+  margin-top: 5px;
 
-    .ProjectHeader {
-        display: flex;
-        flex-direction: row;
-        border-bottom: 2px dashed #dddddd;
-        margin-top: 5px;
-
-        > span:last-child {
-            height: 25px;
-            width: 30px;
-            text-align: center;
-        }
-    }
+  > span:last-child {
+    height: 25px;
+    width: 30px;
+    text-align: center;
+  }
+}
 </style>
