@@ -3,6 +3,8 @@
 </template>
 
 <script lang="ts">
+import {storeComponent, yarnStoreState} from "../store";
+
 const drawCanvas = (colorList: string[][][]) => {
   const squerRows = colorList.length;
   const squerColums = colorList[0].length;
@@ -17,6 +19,9 @@ const drawCanvas = (colorList: string[][][]) => {
   let squearSize = Math.min(squearWidth, squearHeight);
 
   const context = gridCanvas.getContext("2d");
+  if (context === null) {
+    return;
+  }
   context.clearRect(0, 0, gridCanvas.width, gridCanvas.height);
 
   for (let y = 0; y < squerRows; y++) {
@@ -51,13 +56,13 @@ const drawCanvas = (colorList: string[][][]) => {
 export default {
   name: "CanvasGrid",
   created() {
-    this.$store.watch(
-        (state) => state.gridColorList,
-        drawCanvas
+    (this as unknown as storeComponent).$store.watch(
+      (state: yarnStoreState) => state.gridColorList,
+      drawCanvas
     );
   },
   mounted() {
-    drawCanvas(this.$store.state.gridColorList);
+    drawCanvas((this as unknown as storeComponent).$store.state.gridColorList);
   }
 };
 </script>

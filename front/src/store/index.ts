@@ -4,6 +4,31 @@ import {red} from "color-name";
 
 Vue.use(Vuex);
 
+export interface storeComponent {
+  $store: yarnStore;
+}
+
+export interface yarnStore {
+  commit(
+      name: string,
+      a?: any
+  ): void;
+  state: yarnStoreState;
+  watch(
+      fn: (state: yarnStoreState ) => any,
+      callback: (
+          newValue?: any,
+          oldValue?: any
+      ) => void,
+      options?: object
+  ): void;
+}
+
+export interface yarnStoreState {
+  messageBox: boolean;
+  gridColorList: string[][][];
+}
+
 export default new Vuex.Store({
 
   //  store.state

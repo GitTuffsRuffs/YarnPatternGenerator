@@ -3,9 +3,9 @@
     <div id="SettingsAll">
       <div>
         <span
-                class="ProjectHeader"
-                @click="acctiveBoxToggle"
-                data-name="Square"
+          class="ProjectHeader"
+          @click="acctiveBoxToggle"
+          data-name="Square"
         >
           <span>Square</span>
           <span v-if="activeBox !== 'Square'"> ▷ </span>
@@ -185,6 +185,9 @@
             <optgroup label="BaseColors">
               <option>Red</option>
               <option>Blue</option>
+              <option>Green</option>
+              <option>Yellow</option>
+              <option>Pink</option>
             </optgroup>
           </select>
           <input type="button" value="add" @click="addBrandColor"/>
@@ -199,10 +202,24 @@
 </template>
 
 <script lang="ts">
-import CanvasGrid from "../components/CanvasGrid";
+import CanvasGrid from "../components/CanvasGrid.vue";
+import {storeComponent} from "../store";
 
-let component = null;
-let delayTimerID = null;
+interface gridComponent extends storeComponent {
+  activeBox: string;
+  activColor: string;
+  height: number;
+  width: number;
+  size: number;
+  squareColors: number;
+  colorLayerMatch: boolean;
+  colorBorderMatch: boolean;
+  colorList: string[];
+  brandColor: string;
+}
+
+let component = null as null|gridComponent;
+let delayTimerID = null as null|number;
 
 const generateGrid = () => {
   if (component === null) {
@@ -291,21 +308,19 @@ export default {
   }),
   methods: {
     addColor(color: string) {
-      if (this.colorList.indexOf(color) < 0) {
-        this.colorList.push(color);
-        window.console.log(this.colorList);
+      if (component && component.colorList.indexOf(color) < 0) {
+        component.colorList.push(color);
         startTimer();
       }
     },
     addBrandColor() {
-      if(this.brandColor != "") {
-        this.addColor(this.brandColor);
+      if(component && component.brandColor != "") {
+        this.addColor(component.brandColor);
       }
     },
     removeColor(color: string) {
-      if (this.colorList.indexOf(color) >= 0) {
-        this.colorList = this.colorList.filter( (row) => row != color);
-        window.console.log(this.colorList);
+      if (component && component.colorList.indexOf(color) >= 0) {
+        component.colorList = component.colorList.filter( (row) => row != color);
         startTimer();
       }
     },
@@ -314,26 +329,32 @@ export default {
       const span = event.currentTarget as HTMLSpanElement;
       const name = span.getAttribute("data-name");
 
+      if(component == null || name == null) { return }
+      component.activeBox = name;
+      /*
       if (name === "Square") {
-        this.activeBox = "Square";
+        component.activeBox = "Square";
       } else if (name === "Cent") {
-        this.activeBox = "Cent";
-      }
+        component.activeBox = "Cent";
+      }*/
     },
 
     activColorToggle(event: Event) {
       const span = event.currentTarget as HTMLSpanElement;
       const name = span.getAttribute("data-name");
 
+      if(component == null || name == null) { return }
+      component.activColor = name;
+      /*
       if (name === "ColorWheel") {
-        this.activColor = "ColorWheel";
+        component.activColor = "ColorWheel";
       } else if (name === "ColorBrand") {
-        this.activColor = "ColorBrand";
-      }
+        component.activColor = "ColorBrand";
+      }*/
     }
   },
   mounted() {
-    component = this;
+    component = this as unknown as gridComponent;
     startTimer();
   },
   watch: {
