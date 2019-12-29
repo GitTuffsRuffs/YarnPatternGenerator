@@ -3,9 +3,9 @@
     <div id="SettingsAll">
       <div>
         <span
-          class="ProjectHeader"
-          @click="acctiveBoxToggle"
-          data-name="Square"
+                class="ProjectHeader"
+                @click="acctiveBoxToggle"
+                data-name="Square"
         >
           <span>Square</span>
           <span v-if="activeBox !== 'Square'"> ▷ </span>
@@ -17,21 +17,21 @@
             <li>
               <label>
                 <span>Height:</span>
-                <input v-model="height" type="number"/>
+                <input v-model="height" type="number" min="1" max="100"/>
               </label>
             </li>
 
             <li>
               <label>
                 <span>Width:</span>
-                <input v-model="width" type="number"/>
+                <input v-model="width" type="number" min="1" max="100"/>
               </label>
             </li>
 
             <li>
               <label>
                 <span>Square size cm:</span>
-                <input v-model="size" type="number" step="0.01"/>
+                <input v-model="size" type="number" step="0.01" min="0.01"/>
               </label>
             </li>
 
@@ -105,19 +105,21 @@
         <ol>
           <li>
             <label>
-              <span>Color par square:</span>
-              <input v-model="squareColors" type="number"/>
+              <span>Color/Layer par square:</span>
+              <input v-model="squareColors" type="number" min="1" max="100"/>
             </label>
           </li>
 
           <li>
             <label>
-              <input
-                type="checkbox"
-                name="colorBesideSame"
-                value="colorBesideSame"
-              />
-              <span>Colors (Not beside same color)</span>
+              <input type="checkbox" v-model="colorLayerMatch"/>
+              <span>Colors (Layers not same colors)</span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" v-model="colorBorderMatch"/>
+              <span>Colors (Borders not same color)</span>
             </label>
           </li>
         </ol>
@@ -185,7 +187,8 @@ const generateGrid = () => {
   const width = component.width;
   const height = component.height;
   const squareColors = component.squareColors;
-  const baseColor = "white";
+  const availableColors = ["red", "blue", "yellow", "green"];
+  //let possibleColors = "";
   const colorList = [] as string[][][];
 
   //generate new color list:
@@ -196,7 +199,37 @@ const generateGrid = () => {
       const layerColors = [] as string[];
 
       for (let l = 0; l < squareColors; l++) {
-        layerColors.push(baseColor);
+        if(availableColors.length < 2) {
+          layerColors.push(availableColors[0]);
+          continue;
+        }
+
+        const possibleColors = [];
+
+        if (l > 0 && component.colorLayerMatch) {
+          for (const color of availableColors) {
+            if (layerColors[l - 1] != color) {
+              possibleColors.push(color);
+            }
+          }
+        } else if(l == 0 && component.colorBorderMatch) {
+          for (const color of availableColors) {
+            if(x > 0 && rowColors[x -1][0] === color) {
+              continue;
+            }
+            if(y > 0 && colorList[y -1][x][0] === color) {
+              continue;
+            }
+            possibleColors.push(color);
+          }
+        } else {
+          for (const color of availableColors) {
+            possibleColors.push(color);
+          }
+        }
+        const randomColor = possibleColors[Math.floor(Math.random() * possibleColors.length)];
+        window.console.log({randomColor, possibleColors});
+        layerColors.push(randomColor);
       }
       rowColors.push(layerColors);
     }
@@ -214,7 +247,7 @@ const startTimer = () => {
 
 export default {
   name: "random",
-  components: { CanvasGrid },
+  components: {CanvasGrid},
   data: () => ({
     activeBox: "Square",
     activColor: "ColorWheel",
@@ -222,7 +255,9 @@ export default {
     height: 5,
     width: 5,
     size: 0,
-    squareColors: 1
+    squareColors: 1,
+    colorLayerMatch: true,
+    colorBorderMatch: true,
   }),
   methods: {
     acctiveBoxToggle(event: Event) {
@@ -255,6 +290,8 @@ export default {
     height: startTimer,
     width: startTimer,
     squareColors: startTimer,
+    colorLayerMatch: startTimer,
+    colorBorderMatch: startTimer,
   },
 
 };
