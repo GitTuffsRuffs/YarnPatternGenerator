@@ -17,21 +17,21 @@
             <li>
               <label>
                 <span>Height:</span>
-                <input v-model="height" type="number" />
+                <input v-model="height" type="number"/>
               </label>
             </li>
 
             <li>
               <label>
                 <span>Width:</span>
-                <input v-model="width" type="number" />
+                <input v-model="width" type="number"/>
               </label>
             </li>
 
             <li>
               <label>
                 <span>Square size cm:</span>
-                <input v-model="size" type="number" step="0.01" />
+                <input v-model="size" type="number" step="0.01"/>
               </label>
             </li>
 
@@ -57,14 +57,14 @@
             <li>
               <label>
                 <span>Height cm:</span>
-                <input v-model="height" type="number" />
+                <input v-model="height" type="number"/>
               </label>
             </li>
 
             <li>
               <label>
                 <span>Width cm:</span>
-                <input v-model="width" type="number" />
+                <input v-model="width" type="number"/>
               </label>
             </li>
 
@@ -85,12 +85,9 @@
       </div>
       <!-- Centimeters -->
       <div>
-        <span class="ProjectHeader" @click="acctiveBoxToggle" data-name="Cent"
-          >Other</span
-        >
-
+        <span class="ProjectHeader" @click="acctiveBoxToggle" data-name="Cent">Other</span>
         <label>
-          <input type="checkbox" name="c2c" value="c2c" />
+          <input type="checkbox" name="c2c" value="c2c"/>
           <span>Coner to coner chart</span>
         </label>
       </div>
@@ -99,7 +96,7 @@
 
     <div id="Grid">
       <!-- Grid -->
-      <CanvasGrid />
+      <CanvasGrid/>
     </div>
 
     <div id="Colors">
@@ -109,7 +106,7 @@
           <li>
             <label>
               <span>Color par square:</span>
-              <input v-model="squareColors" type="number" />
+              <input v-model="squareColors" type="number"/>
             </label>
           </li>
 
@@ -129,9 +126,9 @@
       <div>
         <!-- Color by Wheel -->
         <span
-          class="ProjectHeader"
-          @click="activColorToggle"
-          data-name="ColorWheel"
+                class="ProjectHeader"
+                @click="activColorToggle"
+                data-name="ColorWheel"
         >
           <span>Color Wheel</span>
           <span v-if="activColor !== 'ColorWheel'"> ▷ </span>
@@ -139,11 +136,11 @@
         </span>
 
         <div v-if="activColor === 'ColorWheel'">
-          <span>Color Wheel:::::HERE</span><br />
+          <span>Color Wheel:::::HERE</span><br/>
           <!-- TODO: fix br in css -->
-          <span>Added color (color amunt, small, medium, allot)</span><br />
+          <span>Added color (color amunt, small, medium, allot)</span><br/>
           <!-- TODO: fix br in css -->
-          <br />
+          <br/>
           <!-- TODO: fix br in css -->
         </div>
       </div>
@@ -151,9 +148,9 @@
       <div>
         <!-- Colors by Brand -->
         <span
-          class="ProjectHeader"
-          @click="activColorToggle"
-          data-name="ColorBrand"
+                class="ProjectHeader"
+                @click="activColorToggle"
+                data-name="ColorBrand"
         >
           <span>Colors by Brand</span>
           <span v-if="activColor !== 'ColorBrand'"> ▷ </span>
@@ -161,11 +158,11 @@
         </span>
 
         <div v-if="activColor === 'ColorBrand'">
-          <span>ColorBrand::::::HERE</span><br />
+          <span>ColorBrand::::::HERE</span><br/>
           <!-- TODO: fix br in css -->
-          <span> added color (color amunt, small, medium, allot)</span><br />
+          <span> added color (color amunt, small, medium, allot)</span><br/>
           <!-- TODO: fix br in css -->
-          <br />
+          <br/>
           <!-- TODO: fix br in css -->
         </div>
       </div>
@@ -176,6 +173,44 @@
 
 <script lang="ts">
 import CanvasGrid from "../components/CanvasGrid";
+
+let component = null;
+let delayTimerID = null;
+
+const generateGrid = () => {
+  if (component === null) {
+    return;
+  }
+
+  const width = component.width;
+  const height = component.height;
+  const squareColors = component.squareColors;
+  const baseColor = "white";
+  const colorList = [] as string[][][];
+
+  //generate new color list:
+  for (let y = 0; y < height; y++) {
+    const rowColors = [] as string[][];
+
+    for (let x = 0; x < width; x++) {
+      const layerColors = [] as string[];
+
+      for (let l = 0; l < squareColors; l++) {
+        layerColors.push(baseColor);
+      }
+      rowColors.push(layerColors);
+    }
+    colorList.push(rowColors);
+  }
+  component.$store.commit("replaceGridColorList", colorList);
+};
+
+const startTimer = () => {
+  if (delayTimerID != null) {
+    clearTimeout(delayTimerID);
+  }
+  delayTimerID = setTimeout(generateGrid, 500);
+};
 
 export default {
   name: "random",
@@ -189,7 +224,6 @@ export default {
     size: 0,
     squareColors: 1
   }),
-
   methods: {
     acctiveBoxToggle(event: Event) {
       const span = event.currentTarget as HTMLSpanElement;
@@ -212,7 +246,17 @@ export default {
         this.activColor = "ColorBrand";
       }
     }
-  }
+  },
+  mounted() {
+    component = this;
+    startTimer();
+  },
+  watch: {
+    height: startTimer,
+    width: startTimer,
+    squareColors: startTimer,
+  },
+
 };
 </script>
 

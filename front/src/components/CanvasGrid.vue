@@ -4,8 +4,9 @@
 
 <script lang="ts">
 const drawCanvas = (colorList: string[][][]) => {
-  const squerRows = colorList[0].length;
-  const squerColums = colorList.length;
+  const squerRows = colorList.length;
+  const squerColums = colorList[0].length;
+  //window.console.log({squerRows, squerColums});
 
   const gridCanvas = document.getElementById("GridCanvas") as HTMLCanvasElement;
   gridCanvas.height = gridCanvas.clientHeight;
@@ -28,12 +29,12 @@ const drawCanvas = (colorList: string[][][]) => {
         let sy = y * squearSize;
         let ss = squearSize;
 
-        if(l > 0) {
-          let offSet = l/2 * (ss/layerCount);
+        if (l > 0) {
+          let offSet = l / 2 * (ss / layerCount);
 
           sx += offSet;
           sy += offSet;
-          ss -= 2*offSet;
+          ss -= 2 * offSet;
         }
 
         const color = cellColors[l];
@@ -41,18 +42,19 @@ const drawCanvas = (colorList: string[][][]) => {
         context.fillRect(sx, sy, ss, ss);
 
         context.fillStyle = color;
-        context.fillRect(sx +1, sy+1, ss-2, ss-2);
+        context.fillRect(sx + 1, sy + 1, ss - 2, ss - 2);
       }
     }
   }
-
-  window.console.log("Hej");
 };
 
 export default {
   name: "CanvasGrid",
-  methods: {
-    drawCanvas,
+  created() {
+    this.$store.watch(
+        (state) => state.gridColorList,
+        drawCanvas
+    );
   },
   mounted() {
     drawCanvas(this.$store.state.gridColorList);

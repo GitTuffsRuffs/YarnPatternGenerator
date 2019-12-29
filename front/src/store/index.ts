@@ -15,32 +15,8 @@ export default new Vuex.Store({
         //column 1
         [
           //Color 1
-          "red",
-          "pink",
-          "pink"
+          "white",
         ],
-        //C2
-        [
-          "green",
-          "orange",
-          "orange"
-        ]
-      ],
-      //R2
-      [
-        //column 2
-        [
-          //Color 1
-          "blue",
-          "blue",
-          "blue"
-        ],
-        //C2
-        [
-          "yellow",
-          "black",
-          "pink"
-        ]
       ],
     ],
   },
