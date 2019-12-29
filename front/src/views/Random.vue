@@ -124,13 +124,24 @@
           </li>
         </ol>
       </div>
+
+      <div>
+        <span class="ProjectHeader">Colors</span>
+        <ul>
+          <li v-for="color in colorList" v-bind:key="color">
+            <span v-bind:style="{backgroundColor: color}">____</span>
+            <input type="text" v-bind:value="color" readonly/>
+            <span  @click="removeColor(color)">-</span>
+          </li>
+        </ul>
+      </div>
       <!-- Affects all color settings -->
       <div>
         <!-- Color by Wheel -->
         <span
-                class="ProjectHeader"
-                @click="activColorToggle"
-                data-name="ColorWheel"
+          class="ProjectHeader"
+          @click="activColorToggle"
+          data-name="ColorWheel"
         >
           <span>Color Wheel</span>
           <span v-if="activColor !== 'ColorWheel'"> ▷ </span>
@@ -140,19 +151,27 @@
         <div v-if="activColor === 'ColorWheel'">
           <span>Color Wheel:::::HERE</span><br/>
           <!-- TODO: fix br in css -->
+
           <span>Added color (color amunt, small, medium, allot)</span><br/>
+
+          <input type="button" value="+Red" @click="addColor('red')"/>
+          <input type="button" value="-Red" @click="removeColor('red')"/>
+
+          <input type="button" value="+Blue" @click="addColor('blue')"/>
+          <input type="button" value="-Blue" @click="removeColor('blue')"/>
+
           <!-- TODO: fix br in css -->
           <br/>
           <!-- TODO: fix br in css -->
         </div>
-      </div>
-      <!-- Color by Wheel -->
+      </div><!-- Color by Wheel -->
+
       <div>
         <!-- Colors by Brand -->
         <span
-                class="ProjectHeader"
-                @click="activColorToggle"
-                data-name="ColorBrand"
+          class="ProjectHeader"
+          @click="activColorToggle"
+          data-name="ColorBrand"
         >
           <span>Colors by Brand</span>
           <span v-if="activColor !== 'ColorBrand'"> ▷ </span>
@@ -161,14 +180,20 @@
 
         <div v-if="activColor === 'ColorBrand'">
           <span>ColorBrand::::::HERE</span><br/>
-          <!-- TODO: fix br in css -->
-          <span> added color (color amunt, small, medium, allot)</span><br/>
+
+          <select v-model="brandColor">
+            <optgroup label="BaseColors">
+              <option>Red</option>
+              <option>Blue</option>
+            </optgroup>
+          </select>
+          <input type="button" value="add" @click="addBrandColor"/>
+
           <!-- TODO: fix br in css -->
           <br/>
           <!-- TODO: fix br in css -->
         </div>
-      </div>
-      <!-- Color by Brand -->
+      </div><!-- Color by Brand -->
     </div>
   </main>
 </template>
@@ -187,9 +212,12 @@ const generateGrid = () => {
   const width = component.width;
   const height = component.height;
   const squareColors = component.squareColors;
-  const availableColors = ["red", "blue", "yellow", "green"];
-  //let possibleColors = "";
+  let availableColors = ["white"];
   const colorList = [] as string[][][];
+
+  if (component.colorList.length > 0) {
+    availableColors = component.colorList;
+  }
 
   //generate new color list:
   for (let y = 0; y < height; y++) {
@@ -199,7 +227,7 @@ const generateGrid = () => {
       const layerColors = [] as string[];
 
       for (let l = 0; l < squareColors; l++) {
-        if(availableColors.length < 2) {
+        if (availableColors.length < 2) {
           layerColors.push(availableColors[0]);
           continue;
         }
@@ -212,12 +240,12 @@ const generateGrid = () => {
               possibleColors.push(color);
             }
           }
-        } else if(l == 0 && component.colorBorderMatch) {
+        } else if (l == 0 && component.colorBorderMatch) {
           for (const color of availableColors) {
-            if(x > 0 && rowColors[x -1][0] === color) {
+            if (x > 0 && rowColors[x - 1][0] === color) {
               continue;
             }
-            if(y > 0 && colorList[y -1][x][0] === color) {
+            if (y > 0 && colorList[y - 1][x][0] === color) {
               continue;
             }
             possibleColors.push(color);
@@ -258,8 +286,30 @@ export default {
     squareColors: 1,
     colorLayerMatch: true,
     colorBorderMatch: true,
+    colorList: [],
+    brandColor: "",
   }),
   methods: {
+    addColor(color: string) {
+      if (this.colorList.indexOf(color) < 0) {
+        this.colorList.push(color);
+        window.console.log(this.colorList);
+        startTimer();
+      }
+    },
+    addBrandColor() {
+      if(this.brandColor != "") {
+        this.addColor(this.brandColor);
+      }
+    },
+    removeColor(color: string) {
+      if (this.colorList.indexOf(color) >= 0) {
+        this.colorList = this.colorList.filter( (row) => row != color);
+        window.console.log(this.colorList);
+        startTimer();
+      }
+    },
+
     acctiveBoxToggle(event: Event) {
       const span = event.currentTarget as HTMLSpanElement;
       const name = span.getAttribute("data-name");
