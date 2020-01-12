@@ -14,6 +14,7 @@ use someNamespaceA\NamespacedClass;
  * @property int id
  * @property string name
  * @property string email
+ * @property string password
  * @property Grid[] grids
  * @property Project[] projects
  */
@@ -51,14 +52,23 @@ class User extends Authenticatable
     /**
      * @return HasMany
      */
-    function grids(): HasMany {
+    public function grids(): HasMany {
         return $this->hasMany(Grid::class);
     }
 
     /**
      * @return HasMany
      */
-    function projects(): HasMany {
+    public function projects(): HasMany {
         return $this->hasMany(Project::class);
+    }
+
+    /**
+     * @param string $password
+     * @return bool
+     */
+    public function login($password): bool
+    {
+        return password_verify($password, $this->password);
     }
 }

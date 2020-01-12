@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('/colors', "Controller@colors");
+
+Route::post('/login', "Controller@login");
