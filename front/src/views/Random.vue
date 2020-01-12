@@ -218,8 +218,8 @@ interface gridComponent extends storeComponent {
   brandColor: string;
 }
 
-let component = null as null|gridComponent;
-let delayTimerID = null as null|number;
+let component = null as null | gridComponent;
+let delayTimerID = null as null | number;
 
 const generateGrid = () => {
   if (component === null) {
@@ -329,7 +329,9 @@ export default {
       const span = event.currentTarget as HTMLSpanElement;
       const name = span.getAttribute("data-name");
 
-      if(component == null || name == null) { return }
+      if (component == null || name == null) {
+        return;
+      }
       component.activeBox = name;
       /*
       if (name === "Square") {
@@ -343,7 +345,9 @@ export default {
       const span = event.currentTarget as HTMLSpanElement;
       const name = span.getAttribute("data-name");
 
-      if(component == null || name == null) { return }
+      if (component == null || name == null) {
+        return;
+      }
       component.activColor = name;
       /*
       if (name === "ColorWheel") {
@@ -354,7 +358,7 @@ export default {
     }
   },
   mounted() {
-    component = this as unknown as gridComponent;
+    component = (this as unknown) as gridComponent;
     startTimer();
   },
   watch: {
@@ -362,9 +366,8 @@ export default {
     width: startTimer,
     squareColors: startTimer,
     colorLayerMatch: startTimer,
-    colorBorderMatch: startTimer,
-  },
-
+    colorBorderMatch: startTimer
+  }
 };
 </script>
 
