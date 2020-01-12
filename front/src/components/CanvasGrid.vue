@@ -71,6 +71,5 @@ export default {
 canvas {
   flex-grow: 1;
   border: 1px black solid;
-  background-color: #6fa2e8;
 }
 </style>
