@@ -92,12 +92,12 @@
         </label>
       </div>
       <!-- Other -->
-    </div>
+    </div> <!-- TODO: Make component -->
 
     <div id="Grid">
       <!-- Grid -->
       <CanvasGrid/>
-    </div>
+    </div> <!-- TODO: Make component -->
 
     <div id="Colors">
       <div>
@@ -188,7 +188,7 @@
         </div>
       </div>
       <!-- Color by Brand -->
-    </div>
+    </div> <!-- TODO: Make component -->
   </main>
 </template>
 

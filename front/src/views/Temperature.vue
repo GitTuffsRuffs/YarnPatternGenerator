@@ -1,6 +1,31 @@
 <template>
   <main id="MainRandom">
-    <div id="Settings">1.Settings</div>
+    <div id="Settings">
+      <!-- TODO: Add component for Square settings -->
+      <!-- TODO: Add component abut temp settings -->
+
+      <div id="TempratureSettings">
+        <!-- Title -->
+        <span class="ProjectHeader">
+          <span>Temperature</span>
+        </span>
+        <label>
+          <span>Start date:</span>
+          <input type="date"/>
+        </label>
+
+        <label>
+          <span>End date:</span>
+          <input type="date"/>
+        </label>
+
+        <label>
+          <span>Location:</span> <!-- Google map locations? -->
+          <input type="text"/>
+        </label>
+      </div>
+
+    </div>
     <div id="Grid">2.Grid</div>
     <div id="Color">3.Colors</div>
   </main>
@@ -26,10 +51,26 @@
 #Grid {
   flex-grow: 1;
 }
+
+#TempratureSettings {
+  display: flex;
+  flex-direction: column;
+
+  > label > input { //TODO: Grow the inputs
+    flex-grow: 1;
+  }
+}
+
+.ProjectHeader {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 2px dashed #dddddd;
+  margin-top: 5px;
+}
 </style>
 
 <script>
 export default {
-  name: "random"
+    name: "random"
 };
 </script>

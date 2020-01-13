@@ -1,6 +1,23 @@
 <template>
   <main id="MainRandom">
-    <div id="Settings">1.Settings</div>
+    <div id="Settings">1.Settings
+
+      <!-- TODO: Add settings component -->
+      <!-- TODO: Add component for Importing img -->
+      <!-- * Button for inporting image -->
+
+      <div>
+        <span>
+          <span>Image inport:</span>
+        </span>
+
+        <label>
+          <span>Import image</span>
+          <input type="file">
+        </label>
+      </div>
+
+    </div>
     <div id="Grid">2.Grid</div>
     <div id="Color">3.Colors</div>
   </main>
@@ -30,6 +47,6 @@
 
 <script>
 export default {
-  name: "random"
+    name: "random"
 };
 </script>

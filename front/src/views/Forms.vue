@@ -1,6 +1,14 @@
 <template>
   <main id="MainRandom">
-    <div id="Settings">1.Settings</div>
+    <div id="Settings">1.Settings
+
+      <!-- TODO: Add settings component -->
+
+      <!-- TODO: Add Forms component -->
+      <!-- 5x5 small grid where you can paint a pixel form
+          This form i later used for generating blankets.
+          Add a list of forms -->
+    </div>
     <div id="Grid">2.Grid</div>
     <div id="Color">3.Colors</div>
   </main>
@@ -30,6 +38,6 @@
 
 <script>
 export default {
-  name: "random"
+    name: "random"
 };
 </script>
