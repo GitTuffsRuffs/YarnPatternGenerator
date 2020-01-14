@@ -61,9 +61,5 @@ console.log(j);
 })();
  * */
 
-
-
-
-
-
+// TODO: Fetch API
 }
