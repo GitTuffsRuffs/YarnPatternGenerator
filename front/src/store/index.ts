@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+//VUEX Talks to everyone object.
 Vue.use(Vuex);
 
 export interface storeComponent {
@@ -23,6 +24,12 @@ export interface yarnStore {
   ): void;
 }
 
+export interface userSttings {
+    id: number;
+    name: string;
+    token: string;
+}
+
 export interface gridSize {
   height: number;
   width: number;
@@ -33,12 +40,18 @@ export interface yarnStoreState {
   messageBox: boolean;
   gridColorList: string[][][];
   gridSize: gridSize;
+  user: userSttings;
 }
 
 export default new Vuex.Store({
 
   //  store.state
   state: {
+    user: {
+      id: 0,
+      name: "",
+      token: ""
+    },
     gridSize: {
       height: 5,
       width: 5,
@@ -70,6 +83,16 @@ export default new Vuex.Store({
     },
     setGridSize: (state:yarnStoreState, payload: gridSize) => {
       state.gridSize = payload;
+    },
+    login: (state: yarnStoreState, payload: userSttings) => {
+      state.user = payload;
+    },
+    logut: (state: yarnStoreState) => {
+      state.user = {
+        id: 0,
+        name: "",
+        token: ""
+      };
     },
   },
 

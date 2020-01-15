@@ -3,18 +3,27 @@
     <h1><router-link to="/">Yarn Pattern Generator</router-link></h1>
 
     <ul>
-      <li><router-link to="/projects">My projects</router-link></li>
-      <li @click="showLogin">Login</li>
+      <li  @click="childClick">
+        <router-link to="/projects">My projects</router-link>
+      </li>
+      <li v-if="$store.state.user.id === 0" @click="showLogin">Login</li>
+      <li v-if="$store.state.user.id > 0" @click="logout">Logout</li>
     </ul>
   </header>
 </template>
 
-<script>
+<script lang="ts">
+import childClick from '../functions/childClick.ts';
+
 export default {
   name: "YearnHeader",
   methods: {
+    childClick,
     showLogin() {
       this.$store.commit("showMessedgeBox", "Login");
+    },
+    logout() {
+        this.$store.commit("logut");
     }
   }
 };
@@ -58,6 +67,7 @@ header {
       padding-left: 2em;
       clip-path: polygon(1.5em 0, 100% 0, calc(100% - 1em) 2em, 0.5em 2em);
       transition: clip-path 0.5s;
+      cursor: pointer;
 
       &:hover {
         clip-path: polygon(1.5em 0, 100% 0, calc(100% - 1.5em) 3em, 0 3em);

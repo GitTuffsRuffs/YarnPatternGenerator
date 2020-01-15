@@ -38,28 +38,8 @@ class Controller extends BaseController
 
         return [
             'id' => $user->id,
-            'status' => 'ok',
+            'name' => $user->name,
+            'token' => session()->getId()
         ];
     }
-
-/*
-(async () => {
-let data = new FormData();
-data.append('username', 'tuffs');
-data.append('password', 'test');
-let rp = fetch(
-  "http://localhost:8000/login",
-  {
-     method: "POST",
-     body: data,
-  }
-);
-let r = await rp;
-let jp = r.json();
-let j = await jp;
-console.log(j);
-})();
- * */
-
-// TODO: Fetch API
 }

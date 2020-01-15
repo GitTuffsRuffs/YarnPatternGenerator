@@ -2,19 +2,28 @@
   <div id="Login">
     <label>
       <span>Username:</span>
-      <input v-model="username" type="email" />
+      <input v-model="username" type="email"/>
     </label>
 
     <label>
       <span>Password:</span>
-      <input v-model="password" type="password" />
+      <input v-model="password" type="password"/>
     </label>
 
     <button id="LoginButton" type="button" @click="login">Login</button>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import {storeComponent} from "../store";
+
+let component: loginComponent = null;
+
+interface loginComponent extends storeComponent {
+  username: string;
+  password: string;
+}
+
 export default {
   name: "Login",
 
@@ -22,12 +31,35 @@ export default {
     username: "",
     password: ""
   }),
-
   methods: {
-    login() {
-      window.console.log(["Login", this.username, this.password]);
+    login: async () => {
+      let data = new FormData();
+      data.append('username', component.username);
+      data.append('password', component.password); //test TODO: REMOVE LATER
+
+      let respons = await fetch(
+          "http://localhost:8000/login",
+          {
+            method: "POST",
+            body: data,
+          }
+      );
+
+      if (!respons.ok) {
+        alert("Login fail.");
+        return;
+      }
+
+      let userSettings = await respons.json();
+      window.console.log(userSettings);
+
+      component.$store.commit("login", userSettings);
+      component.$store.commit("showMessedgeBox", "");
     }
-  }
+  },
+  mounted() {
+    component = this;
+  },
 };
 </script>
 

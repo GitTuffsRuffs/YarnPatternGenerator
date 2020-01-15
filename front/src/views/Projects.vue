@@ -1,5 +1,5 @@
 <template>
-  <mainPage id="MainBord">
+  <main id="MainBord"  v-if="$store.state.user.id > 0">
     <div id="NewProject">
       <router-link to="/newproject">New Project</router-link>
     </div>
@@ -39,7 +39,7 @@
     <div id="ImageBord">
       Images
     </div>
-  </mainPage>
+  </main>
 </template>
 
 <style lang="less">
@@ -102,6 +102,11 @@ ol {
 
 <script>
 export default {
-  name: "random"
+  name: "projects",
+    mounted() {
+        if(this.$store.state.user.id === 0) {
+            this.$store.commit("showMessedgeBox", "Login");
+        }
+    }
 };
 </script>

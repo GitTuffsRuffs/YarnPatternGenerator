@@ -1,5 +1,5 @@
 <template>
-  <mainPage id="MainProject">
+  <main id="MainProject">
     <div id="project">
       <h3>New Project</h3>
 
@@ -37,7 +37,7 @@
         <img :src="require('../assets/img/add-img.svg')" />
       </button>
     </div>
-  </mainPage>
+  </main>
 </template>
 
 <style lang="less">
@@ -109,6 +109,6 @@
 
 <script>
 export default {
-  name: "random"
+  name: "newProjects"
 };
 </script>

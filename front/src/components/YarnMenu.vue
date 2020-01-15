@@ -1,21 +1,40 @@
 <template>
   <ul id="SideMenu">
-    <li><router-link to="/random">By Random</router-link></li>
-    <li><router-link to="/patterns">By Patterns</router-link></li>
-    <li><router-link to="/forms">By Forms</router-link></li>
-    <li><router-link to="/image">By Image</router-link></li>
-    <li><router-link to="/temperature">By Temperature</router-link></li>
-    <li><router-link to="/freepaint">Free Paint</router-link></li>
+    <li @click="childClick">
+      <router-link to="/random">By Random</router-link>
+    </li>
+    <li @click="childClick">
+      <router-link to="/patterns">By Patterns</router-link>
+    </li>
+    <li @click="childClick">
+      <router-link to="/forms">By Forms</router-link>
+    </li>
+    <li @click="childClick">
+      <router-link to="/image">By Image</router-link>
+    </li>
+    <li @click="childClick">
+      <router-link to="/temperature">By Temperature</router-link>
+    </li>
+    <li @click="childClick">
+      <router-link to="/freepaint">Free Paint</router-link>
+    </li>
     <li></li>
     <li>Save</li>
     <!-- If eny generators or othere changes show save button, Not on Home, or My project site. -->
   </ul>
 </template>
-<script>
+
+<script lang="ts">
+import childClick from '../functions/childClick.ts';
+
 export default {
-  name: "YarnMenu"
+    name: "YarnMenu",
+    methods: {
+        childClick
+    }
 };
 </script>
+
 <style lang="less">
 #SideMenu {
   margin: 0;
@@ -29,11 +48,12 @@ export default {
     margin-bottom: 10px;
     padding: 10px;
     padding-right: 70px;
+    cursor: pointer;
     clip-path: polygon(
-      0 0,
-      calc(100% - 40px) 0,
-      calc(100% - 60px) 100%,
-      0 100%
+            0 0,
+            calc(100% - 40px) 0,
+            calc(100% - 60px) 100%,
+            0 100%
     );
     transition: clip-path 0.5s;
 

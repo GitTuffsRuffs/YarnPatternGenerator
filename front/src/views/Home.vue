@@ -1,5 +1,5 @@
 <template>
-  <div id="MainHome">
+  <main id="MainHome">
     <div id="Info">
       <p>
         On this page you can use some of our features to generate a pattern for
@@ -17,7 +17,7 @@
     </div>
     <div id="Account"><a href="">Create your account</a></div>
     <div id="SlideShow">"Slide show pictures"</div>
-  </div>
+  </main>
 </template>
 
 <style lang="less">
