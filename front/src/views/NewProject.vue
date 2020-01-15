@@ -1,5 +1,5 @@
 <template>
-  <main id="MainProject">
+  <mainPage id="MainProject">
     <div id="project">
       <h3>New Project</h3>
 
@@ -37,7 +37,7 @@
         <img :src="require('../assets/img/add-img.svg')" />
       </button>
     </div>
-  </main>
+  </mainPage>
 </template>
 
 <style lang="less">

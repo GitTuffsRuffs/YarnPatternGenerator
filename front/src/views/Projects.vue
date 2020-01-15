@@ -1,5 +1,5 @@
 <template>
-  <main id="MainBord">
+  <mainPage id="MainBord">
     <div id="NewProject">
       <router-link to="/newproject">New Project</router-link>
     </div>
@@ -39,7 +39,7 @@
     <div id="ImageBord">
       Images
     </div>
-  </main>
+  </mainPage>
 </template>
 
 <style lang="less">

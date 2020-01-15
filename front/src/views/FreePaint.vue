@@ -1,5 +1,5 @@
 <template>
-  <main id="MainRandom">
+  <mainPage id="MainRandom">
     <div id="Settings">1.Settings</div> <!-- TODO: Component for all settings -->
     <div id="Grid">2.Grid</div> <!-- TODO: Add component for gridd -->
     <div id="Color">3.Colors</div> <!-- TODO: Add component for colors -->
@@ -7,7 +7,7 @@
 
     <!-- Alott like random but free paint insted of random generated -->
 
-  </main>
+  </mainPage>
 </template>
 
 <style lang="less">

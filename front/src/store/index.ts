@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {red} from "color-name";
 
 Vue.use(Vuex);
 

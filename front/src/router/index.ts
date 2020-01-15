@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Main from "../views/Main.vue";
+import MainPage from "../views/MainPage.vue";
 import FreePaint from "../views/FreePaint.vue";
 import Projects from "../views/Projects.vue";
 import NewProject from "../views/NewProject.vue";
@@ -17,27 +17,27 @@ const routes = [
   {
     path: "/random",
     name: "random",
-    component: Main
+    component: MainPage
   },
   {
     path: "/patterns",
     name: "patterns",
-    component: Main
+    component: MainPage
   },
   {
     path: "/forms",
     name: "forms",
-    component: Main
+    component: MainPage
   },
   {
     path: "/image",
     name: "image",
-    component: Main
+    component: MainPage
   },
   {
     path: "/temperature",
     name: "temperature",
-    component: Main
+    component: MainPage
   },
   {
     path: "/freepaint",

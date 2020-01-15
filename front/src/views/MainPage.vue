@@ -1,12 +1,6 @@
 <template>
-  <main id="MainRandom">
-    <SquerSettings
-      :acctive-box-toggle="acctiveBoxToggle"
-      :active-box="activeBox"
-      :height="height"
-      :size="size"
-      :width="width"
-    >
+  <div id="MainRandom">
+    <SquerSettings>
       <PatternsSettings />
       <ImageSettings />
       <TempratureSettings />
@@ -119,7 +113,7 @@
         </div>
       </div>
     </div>
-  </main>
+  </div>
 </template>
 
 <script lang="ts">
@@ -160,6 +154,9 @@ const generateRandomGrid = () => {
 
   const width = component.width;
   const height = component.height;
+
+  window.console.log({ width, height });
+
   const squareColors = component.squareColors;
   let availableColors = ["white"];
   const colorList = [] as string[][][];
@@ -224,7 +221,7 @@ const startTimer = () => {
 };
 
 export default {
-  name: "main",
+  name: "mainPage",
   components: {
     PatternsSettings,
     TempratureSettings,
@@ -234,13 +231,9 @@ export default {
     ColorPicker
   },
   data: () => ({
-    activeBox: "Square",
     activColor: "ColorWheel",
     newcolor: "#ffffff",
     replacecolor: "",
-    height: 5,
-    width: 5,
-    size: 0,
     squareColors: 1,
     colorLayerMatch: true,
     colorBorderMatch: true,
@@ -289,23 +282,6 @@ export default {
         startTimer();
       }
     },
-
-    acctiveBoxToggle(event: Event) {
-      const span = event.currentTarget as HTMLSpanElement;
-      const name = span.getAttribute("data-name");
-
-      if (component == null || name == null) {
-        return;
-      }
-      component.activeBox = name;
-      /*
-      if (name === "Square") {
-        component.activeBox = "Square";
-      } else if (name === "Cent") {
-        component.activeBox = "Cent";
-      }*/
-    },
-
     activColorToggle(event: Event) {
       const span = event.currentTarget as HTMLSpanElement;
       const name = span.getAttribute("data-name");

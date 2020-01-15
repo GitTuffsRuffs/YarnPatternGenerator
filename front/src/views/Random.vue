@@ -1,5 +1,5 @@
 <template>
-  <main id="MainRandom">
+  <mainPage id="MainRandom">
     <SquerSettings :acctive-box-toggle="acctiveBoxToggle"
                    :active-box="activeBox"
                    :height="height"
@@ -100,7 +100,7 @@
       </div>
       <!-- Color by Brand -->
     </div> <!-- TODO: Make component -->
-  </main>
+  </mainPage>
 </template>
 
 <script lang="ts">
