@@ -120,7 +120,7 @@
 import CanvasGrid from "../components/CanvasGrid.vue";
 import ColorPicker from "vue-color-picker-wheel";
 //const ColorPicker = (require("vue-color-picker-wheel")).default;
-import { storeComponent } from "../store/index";
+import {storeComponent, yarnStoreState} from "../store/index";
 import SquerSettings from "../components/settings/SquerSettings.vue";
 import ImageSettings from "../components/settings/ImageSettings.vue";
 import TempratureSettings from "../components/settings/TempratureSettings.vue";
@@ -152,8 +152,8 @@ const generateRandomGrid = () => {
     return;
   }
 
-  const width = component.width;
-  const height = component.height;
+  const width = component.$store.state.gridSize.width;
+  const height = component.$store.state.gridSize.height;
 
   window.console.log({ width, height });
 
@@ -229,6 +229,12 @@ export default {
     SquerSettings,
     CanvasGrid,
     ColorPicker
+  },
+  created() {
+    (this as unknown as storeComponent).$store.watch(
+        (state: yarnStoreState) => state.gridSize,
+        startTimer
+    );
   },
   data: () => ({
     activColor: "ColorWheel",

@@ -55,7 +55,7 @@ const drawCanvas = (colorList: string[][][]) => {
 
 export default {
   name: "CanvasGrid",
-  created() {
+ created() {
     (this as unknown as storeComponent).$store.watch(
       (state: yarnStoreState) => state.gridColorList,
       drawCanvas

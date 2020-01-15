@@ -23,15 +23,27 @@ export interface yarnStore {
   ): void;
 }
 
+export interface gridSize {
+  height: number;
+  width: number;
+  size: number;
+}
+
 export interface yarnStoreState {
   messageBox: boolean;
   gridColorList: string[][][];
+  gridSize: gridSize;
 }
 
 export default new Vuex.Store({
 
   //  store.state
   state: {
+    gridSize: {
+      height: 5,
+      width: 5,
+      size: 0
+    },
     messageBox: false,
     gridColorList: [
       //row 1
@@ -55,6 +67,9 @@ export default new Vuex.Store({
     },
     replaceGridColorList: (state, gridColors) => {
       state.gridColorList = gridColors;
+    },
+    setGridSize: (state:yarnStoreState, payload: gridSize) => {
+      state.gridSize = payload;
     },
   },
 

@@ -94,18 +94,60 @@
     <slot></slot>
   </div>
 </template>
+
 <script lang="ts">
+import {gridSize, storeComponent} from "../../store";
+
+let component: squerSettingsComponent = null;
+
+interface squerSettingsComponent extends storeComponent, gridSize {
+  activeBox: string;
+}
+
+const uppdateHandeler = () => {
+  component.$store.commit(
+      "setGridSize",
+      {
+        height: component.height,
+        width: component.width,
+        size: component.size
+      });
+}
+
 export default {
   name: 'SquerSettings',
-  props: {
-    acctiveBoxToggle: {},
-    activeBox: {},
-    height: {},
-    size: {},
-    width: {}
+  data: () => ({
+    activeBox: "Square",
+    height: 1,
+    width: 1,
+    size: 0
+  }),
+  methods: {
+    acctiveBoxToggle(event: Event) {
+      const span = event.currentTarget as HTMLSpanElement;
+      const name = span.getAttribute("data-name");
+
+      if (component == null || name == null) {
+        return;
+      }
+      component.activeBox = name;
+    }
+  },
+  mounted() {
+    component = this;
+
+    const gridSize = (component as storeComponent).$store.state.gridSize;
+    component.height = gridSize.height;
+    component.width = gridSize.width;
+    component.size = gridSize.size;
+  },
+  watch: {
+    height: uppdateHandeler,
+    width: uppdateHandeler
   }
-}
+};
 </script>
+
 <style lang="less">
 
 #MainRandom > div {
