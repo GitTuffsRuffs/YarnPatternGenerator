@@ -13,9 +13,11 @@ export interface yarnStore {
       name: string,
       a?: any
   ): void;
+
   state: yarnStoreState;
+
   watch(
-      fn: (state: yarnStoreState ) => any,
+      fn: (state: yarnStoreState) => any,
       callback: (
           newValue?: any,
           oldValue?: any
@@ -24,10 +26,16 @@ export interface yarnStore {
   ): void;
 }
 
+export interface projectsSettings {
+  id: number;
+  name: string;
+  status: string;
+}
+
 export interface userSttings {
-    id: number;
-    name: string;
-    token: string;
+  id: number;
+  name: string;
+  token: string;
 }
 
 export interface gridSize {
@@ -41,6 +49,7 @@ export interface yarnStoreState {
   gridColorList: string[][][];
   gridSize: gridSize;
   user: userSttings;
+  projects: projectsSettings[];
 }
 
 export default new Vuex.Store({
@@ -52,6 +61,7 @@ export default new Vuex.Store({
       name: "",
       token: ""
     },
+    projects: [],
     gridSize: {
       height: 5,
       width: 5,
@@ -81,7 +91,7 @@ export default new Vuex.Store({
     replaceGridColorList: (state, gridColors) => {
       state.gridColorList = gridColors;
     },
-    setGridSize: (state:yarnStoreState, payload: gridSize) => {
+    setGridSize: (state: yarnStoreState, payload: gridSize) => {
       state.gridSize = payload;
     },
     login: (state: yarnStoreState, payload: userSttings) => {
@@ -94,8 +104,12 @@ export default new Vuex.Store({
         token: ""
       };
     },
+    proejcts: (state: yarnStoreState, payload: projectsSettings[] ) => {
+      state.projects = payload;
+    },
   },
 
-  //  store.deploy
-  actions: {},
+//  store.deploy
+  actions: {}
+  ,
 })

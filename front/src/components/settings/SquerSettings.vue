@@ -98,7 +98,7 @@
 <script lang="ts">
 import {gridSize, storeComponent} from "../../store";
 
-let component: squerSettingsComponent = null;
+let component: squerSettingsComponent|any = null;
 
 interface squerSettingsComponent extends storeComponent, gridSize {
   activeBox: string;

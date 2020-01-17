@@ -13,18 +13,24 @@
 </template>
 
 <script lang="ts">
-import childClick from '../functions/childClick.ts';
+import childClick from '../functions/childClick';
+import {storeComponent} from "../store";
+
+let component: storeComponent|any = null;
 
 export default {
   name: "YearnHeader",
   methods: {
     childClick,
     showLogin() {
-      this.$store.commit("showMessedgeBox", "Login");
+      component.$store.commit("showMessedgeBox", "Login");
     },
     logout() {
-        this.$store.commit("logut");
+      component.$store.commit("logut");
     }
+  },
+  mounted() {
+    component = this;
   }
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <main id="MainBord"  v-if="$store.state.user.id > 0">
+  <main id="MainBord" v-if="$store.state.user.id > 0">
     <div id="NewProject">
       <router-link to="/newproject">New Project</router-link>
     </div>
@@ -13,10 +13,9 @@
 
         <ol>
           <!-- Order by date, created project -->
-          <li>Blandet 1</li>
-          <li>Blandet Tetris</li>
-          <li>Blandet 22</li>
-          <li>Blandet Sommar</li>
+          <li v-for="project in $store.state.projects" v-bind:key="project.id">
+            {{ project.name }}
+          </li>
         </ol>
       </div>
 
@@ -41,6 +40,49 @@
     </div>
   </main>
 </template>
+
+
+<script lang="ts">
+import {storeComponent, yarnStoreState} from "../store";
+
+let component: projectComponent|any= null;
+
+interface projectComponent extends storeComponent {
+  name: string;
+  status: string;
+}
+
+const loadProjects = async () => {
+  let respons = await fetch("http://localhost:8000/projects", { credentials: 'include' });
+
+  if (!respons.ok) {
+    alert("Failed to get projects");
+    return;
+  }
+
+  let projectSettings = await respons.json();
+  component.$store.commit("proejcts", projectSettings);
+};
+
+export default {
+  name: "projects",
+  created() {
+    (this as unknown as storeComponent).$store.watch(
+        (state: yarnStoreState) => state.user,
+        loadProjects
+    );
+  },
+  mounted() {
+    component = this;
+
+    if (component.$store.state.user.id === 0) {
+      component.$store.commit("showMessedgeBox", "Login");
+    } else {
+      loadProjects();
+    }
+  }
+};
+</script>
 
 <style lang="less">
 #MainBord {
@@ -99,14 +141,3 @@ ol {
   }
 }
 </style>
-
-<script>
-export default {
-  name: "projects",
-    mounted() {
-        if(this.$store.state.user.id === 0) {
-            this.$store.commit("showMessedgeBox", "Login");
-        }
-    }
-};
-</script>

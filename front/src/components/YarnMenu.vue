@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import childClick from '../functions/childClick.ts';
+import childClick from '../functions/childClick';
 
 export default {
     name: "YarnMenu",

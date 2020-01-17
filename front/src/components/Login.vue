@@ -17,12 +17,15 @@
 <script lang="ts">
 import {storeComponent} from "../store";
 
-let component: loginComponent = null;
+let component: loginComponent|any = null;
 
 interface loginComponent extends storeComponent {
   username: string;
   password: string;
 }
+
+import Vue from "vue";
+let a = Vue.extend();
 
 export default {
   name: "Login",
@@ -42,6 +45,7 @@ export default {
           {
             method: "POST",
             body: data,
+            credentials: 'include'
           }
       );
 
