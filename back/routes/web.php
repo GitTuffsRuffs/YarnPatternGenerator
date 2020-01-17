@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::get('/colors', "Controller@colors");
 
 Route::post('/login', "Controller@login");
+
+Route::get('/projectsAll', "Controller@getProjects");
+
+Route::get('/projects', "Controller@getProjectsByUSerId"); //->middleware("auth")

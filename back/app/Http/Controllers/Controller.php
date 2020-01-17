@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Color;
+use App\Project;
 use App\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -41,5 +42,20 @@ class Controller extends BaseController
             'name' => $user->name,
             'token' => session()->getId()
         ];
+    }
+
+    public function getProjects() {
+        return Project::all();
+    }
+
+    public function getProjectsByUSerId() {
+
+        /** @var User $user */
+        $user = Auth::user();
+
+        if(!$user) {
+            throw new HttpException(403, 'Login first');
+        }
+        return $user->projects;
     }
 }
