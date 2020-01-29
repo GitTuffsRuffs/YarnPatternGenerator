@@ -9,14 +9,18 @@
         This web app is built with Html, less, Vue, Typescript, Laravel / php,
         MariaDB / SQL.
       </p>
+      <!--
       <p>
         You can also log in if you create your own account to save generated
         designs and other projects that you have active.
       </p>
       <p>You can create an account by pressing the button below.</p>
+      -->
     </div>
+    <!--
     <div id="Account"><a href="">Create your account</a></div>
     <div id="SlideShow">"Slide show pictures"</div>
+    -->
   </main>
 </template>
 

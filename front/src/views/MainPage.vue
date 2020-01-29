@@ -41,55 +41,53 @@
         <ul id="selectedColors">
           <li v-for="color in colorList" v-bind:key="color">
             <span
-                    class="selectedColor"
-                    v-bind:style="{ backgroundColor: color }"
-                    @click="editColor(color)"
-            >{{ color }}</span
-            >
-            <span class="remove" @click="removeColor(color)"
-            ><icon icon="trash-alt">-</icon></span
+              class="selectedColor"
+              v-bind:style="{ backgroundColor: color }"
+              @click="editColor(color)">{{ color }}
+            </span>
+            <span class="remove" @click="removeColor(color)">
+              <icon icon="trash-alt">-</icon></span
             >
           </li>
         </ul>
       </div>
       <!-- Affects all color settings -->
-      <div v-if="$route.name != 'load' ">
+      <div v-if="$route.name !== 'load'">
         <!-- Color by Wheel -->
         <span
-                class="ProjectHeader"
-                @click="activColorToggle"
-                data-name="ColorWheel"
+          class="ProjectHeader"
+          @click="activColorToggle"
+          data-name="ColorWheel"
         >
           <span>Color Wheel</span>
           <span v-if="activColor !== 'ColorWheel'"> ▷ </span>
           <span v-if="activColor === 'ColorWheel'"> ▼ </span>
         </span>
 
-        <div v-if="activColor === 'ColorWheel'">
+        <div id="ColorWheel" v-if="activColor === 'ColorWheel'">
           <ColorPicker v-model="newcolor"></ColorPicker>
 
           <input
-                  v-if="this.replacecolor == ''"
-                  type="button"
-                  value="Add Color"
-                  @click="addByWheel()"
+            v-if="this.replacecolor === ''"
+            type="button"
+            value="Add Color"
+            @click="addByWheel()"
           />
           <input
-                  v-if="this.replacecolor != ''"
-                  type="button"
-                  value="Save Color"
-                  @click="addByWheel()"
+            v-if="this.replacecolor !== ''"
+            type="button"
+            value="Save Color"
+            @click="addByWheel()"
           />
         </div>
       </div>
-      <!-- Color by Wheel -->
 
+      <!-- Colors by Brand
       <div>
-        <!-- Colors by Brand -->
         <span
-                class="ProjectHeader"
-                @click="activColorToggle"
-                data-name="ColorBrand"
+          class="ProjectHeader"
+          @click="activColorToggle"
+          data-name="ColorBrand"
         >
           <span>Colors by Brand</span>
           <span v-if="activColor !== 'ColorBrand'"> ▷ </span>
@@ -112,6 +110,7 @@
           <br/>
         </div>
       </div>
+      -->
     </div>
   </div>
 </template>
@@ -232,7 +231,6 @@ const maybeStartTimer = () => {
 };
 
 const uppdateGrid = async () => {
-
   if (component.$route.name == "random") {
     generateRandomGrid();
     return;
@@ -240,12 +238,12 @@ const uppdateGrid = async () => {
 
   //component.$route.params.id
   if (component.$route.name == "load") {
-
-    let respons = await
-        fetch("http://localhost:8000/load?id=" + component.$route.params.id,
-            {
-              credentials: 'include'
-            })
+    let respons = await fetch(
+        "http://localhost:8000/load?id=" + component.$route.params.id,
+        {
+          credentials: "include"
+        }
+    );
 
     if (!respons.ok) {
       alert("Load failed.");
@@ -256,13 +254,11 @@ const uppdateGrid = async () => {
 
     //alert("LOAD!! " + loadRespons.name);
 
-    component.$store.commit(
-        "setGridSize",
-        {
-          height: loadRespons.colorList.length,
-          width: loadRespons.colorList[0].length,
-          size: loadRespons.squareSize
-        });
+    component.$store.commit("setGridSize", {
+      height: loadRespons.colorList.length,
+      width: loadRespons.colorList[0].length,
+      size: loadRespons.squareSize
+    });
 
     component.$store.commit("replaceGridColorList", loadRespons.colorList);
     const colors: string[] = [];
@@ -278,7 +274,7 @@ const uppdateGrid = async () => {
     }
     component.replaceColors(colors);
   }
-}
+};
 
 const randomColor = () => {
   //"#" + (Math.random() * 0x1000000 + 0x1000000).toString(16).substr(1,6),
@@ -304,7 +300,7 @@ const randomColor = () => {
   }
 
   return "#ff00" + colorNumber.toString(16).substr(1, 2);
-}
+};
 
 const startTimer = () => {
   if (delayTimerID != null) {
@@ -324,7 +320,7 @@ export default {
     ColorPicker
   },
   created() {
-    (this as unknown as storeComponent).$store.watch(
+    ((this as unknown) as storeComponent).$store.watch(
         (state: yarnStoreState) => state.gridSize,
         maybeStartTimer
     );
@@ -475,4 +471,17 @@ export default {
     font-weight: bold;
   }
 }
+
+#ColorWheel {
+  display: flex;
+  flex-direction: column;
+
+  > input {
+    height: 50px;
+    width: 302px;
+    font-weight: bold;
+    font-size: 1em;
+  }
+}
+
 </style>

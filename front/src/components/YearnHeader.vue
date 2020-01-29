@@ -2,6 +2,7 @@
   <header id="TopMenu">
     <h1><router-link to="/">Yarn Pattern Generator</router-link></h1>
 
+    <!--
     <ul>
       <li  @click="childClick">
         <router-link to="/projects">My projects</router-link>
@@ -9,6 +10,7 @@
       <li v-if="$store.state.user.id === 0" @click="showLogin">Login</li>
       <li v-if="$store.state.user.id > 0" @click="logout">Logout</li>
     </ul>
+    -->
   </header>
 </template>
 

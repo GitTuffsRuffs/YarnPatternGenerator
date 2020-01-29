@@ -3,6 +3,7 @@
     <li @click="childClick">
       <router-link to="/random">By Random</router-link>
     </li>
+    <!--
     <li @click="childClick">
       <router-link to="/patterns">By Patterns</router-link>
     </li>
@@ -19,14 +20,15 @@
       <router-link to="/freepaint">Free Paint</router-link>
     </li>
     <li></li>
-    <li @click="saveGrid">Save</li>
+    -->
+    <li @click="saveGrid" v-if="$route.name !== 'home'">Save</li>
     <!-- If eny generators or othere changes show save button, Not on Home, or My project site. -->
   </ul>
 </template>
 
 <script lang="ts">
-import childClick from '../functions/childClick';
-import {storeComponent} from "../store";
+import childClick from "../functions/childClick";
+import { storeComponent } from "../store";
 
 let component: storeComponent | any = null;
 
@@ -41,19 +43,20 @@ export default {
       }
       const size = component.$store.state.gridSize.size;
       const grid = component.$store.state.gridColorList;
-      const name = prompt("Name your project", (new Date()).toISOString().substr(0, 10));
+      const name = prompt(
+        "Name your project",
+        new Date().toISOString().substr(0, 10)
+      );
 
-      let respons = await fetch("http://localhost:8000/save",
-          {
-            method: "POST",
-            body: JSON.stringify(
-                {
-                  size,
-                  grid,
-                  name
-                }),
-            credentials: 'include'
-          });
+      let respons = await fetch("http://localhost:8000/save", {
+        method: "POST",
+        body: JSON.stringify({
+          size,
+          grid,
+          name
+        }),
+        credentials: "include"
+      });
 
       if (!respons.ok) {
         alert("Save failed.");
@@ -64,7 +67,7 @@ export default {
       const url = "http://localhost:8080/load/" + id; //TODO: FIX
 
       alert("Save ok!\n" + url);
-      component.$router.push("/load/" +id);
+      component.$router.push("/load/" + id);
     }
   },
   mounted() {
@@ -88,10 +91,10 @@ export default {
     padding-right: 70px;
     cursor: pointer;
     clip-path: polygon(
-            0 0,
-            calc(100% - 40px) 0,
-            calc(100% - 60px) 100%,
-            0 100%
+      0 0,
+      calc(100% - 40px) 0,
+      calc(100% - 60px) 100%,
+      0 100%
     );
     transition: clip-path 0.5s;
 

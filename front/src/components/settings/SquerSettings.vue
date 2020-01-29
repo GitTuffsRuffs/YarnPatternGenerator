@@ -1,15 +1,15 @@
 <template>
   <div id="SettingsAll">
     <div>
-        <span
-                class="ProjectHeader"
-                @click="acctiveBoxToggle"
-                data-name="Square"
-        >
-          <span>Square</span>
-          <span v-if="activeBox !== 'Square'"> ▷ </span>
-          <span v-if="activeBox === 'Square'"> ▼ </span>
-        </span>
+      <span
+        class="ProjectHeader"
+        @click="acctiveBoxToggle"
+        data-name="Square"
+      >
+      <span>Square</span>
+        <span v-if="activeBox !== 'Square'"> ▷ </span>
+        <span v-if="activeBox === 'Square'"> ▼ </span>
+      </span>
       <div v-if="activeBox === 'Square'">
         <span>Full blanket in square:</span>
         <ol>
@@ -35,15 +35,15 @@
           </li>
 
           <li>
-              <span>
-                Data: {{ (height * size).toFixed(2) }} ×
-                {{ (width * size).toFixed(2) }} cm
-              </span>
+            <span>
+              Data: {{ (height * size).toFixed(2) }} × {{ (width * size).toFixed(2) }} cm
+            </span>
           </li>
         </ol>
       </div>
     </div>
-    <!-- Square -->
+
+<!--
     <div>
         <span class="ProjectHeader" @click="acctiveBoxToggle" data-name="Cent">
           <span>Centimeter</span>
@@ -82,7 +82,8 @@
         </ol>
       </div>
     </div>
-    <!-- Centimeters -->
+-->
+<!--
     <div>
       <span class="ProjectHeader" @click="acctiveBoxToggle" data-name="Cent">Other</span>
       <label>
@@ -90,7 +91,7 @@
         <span>Coner to coner chart</span>
       </label>
     </div>
-
+-->
     <slot></slot>
   </div>
 </template>
@@ -106,12 +107,12 @@ interface squerSettingsComponent extends storeComponent, gridSize {
 
 const uppdateHandeler = () => {
   component.$store.commit(
-      "setGridSize",
-      {
-        height: +component.height,
-        width: +component.width,
-        size: +component.size
-      });
+    "setGridSize",
+    {
+      height: +component.height,
+      width: +component.width,
+      size: +component.size
+    });
 }
 
 export default {
@@ -141,11 +142,11 @@ export default {
       component.height = gridSize.height;
       component.width = gridSize.width;
       component.size = gridSize.size;
-    }
+    };
 
     (component as storeComponent).$store.watch(
-        (state: yarnStoreState) => state.gridSize,
-        update
+      (state: yarnStoreState) => state.gridSize,
+      update
     );
 
     update();
