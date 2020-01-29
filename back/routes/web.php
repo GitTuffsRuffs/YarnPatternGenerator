@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,3 +24,7 @@ Route::post('/login', "Controller@login");
 Route::get('/projectsAll', "Controller@getProjects");
 
 Route::get('/projects', "Controller@getProjectsByUSerId"); //->middleware("auth")
+
+Route::post('/save', "Controller@saveProject");
+
+Route::get('/load', "Controller@loadProject");

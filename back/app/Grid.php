@@ -34,4 +34,10 @@ class Grid extends Model
     function pictures(): HasMany {
         return $this->hasMany( GridPicture::class);
     }
+
+    function jsonSerialize() {
+        $data = $this->toArray();
+        $data["colorList"] = json_decode($data["colorList"], false);
+        return $data;
+    }
 }

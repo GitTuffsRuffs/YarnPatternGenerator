@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Color;
+use App\Grid;
 use App\Project;
 use App\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -17,7 +18,8 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
 
-    public function colors() {
+    public function colors()
+    {
         return Color::all();
     }
 
@@ -27,11 +29,11 @@ class Controller extends BaseController
         /** @var User $user */
         $user = $query->first();
 
-        if(!$user) {
+        if (!$user) {
             throw new HttpException(403, 'No user found'); //FIX Messege
         }
 
-        if(!$user->login($_POST['password'] ?? '')) {
+        if (!$user->login($_POST['password'] ?? '')) {
             throw new HttpException(403, 'Wrong Password'); //FIX messege
         }
 
@@ -44,18 +46,52 @@ class Controller extends BaseController
         ];
     }
 
-    public function getProjects() {
+    public function getProjects()
+    {
         return Project::all();
     }
 
-    public function getProjectsByUSerId() {
-
+    public function getProjectsByUSerId()
+    {
         /** @var User $user */
         $user = Auth::user();
 
-        if(!$user) {
+        if (!$user) {
             throw new HttpException(403, 'Login first');
         }
         return $user->projects;
+    }
+
+    /**
+     * @throws \Throwable
+     */
+    public function saveProject()
+    {
+        /** @var User $user */
+        $user = Auth::user();
+        $json = request()->getContent();
+
+        /** @var \SaveData $data */
+        $data = json_decode($json, false);
+        $grid = new Grid();
+
+        if ($user) {
+            $grid->user_id = $user->id;
+        } else {
+            $grid->user_id = 1;
+        }
+
+        $grid->name = $data->name;
+        $grid->squareSize = $data->size;
+        $grid->colorList = json_encode($data->grid);
+        $grid->version = 1;
+
+        $grid->saveOrFail();
+        return $grid->id;
+    }
+
+    public function loadProject() {
+        $id = +$_GET['id'];
+        return Grid::query()->find($id);
     }
 }
