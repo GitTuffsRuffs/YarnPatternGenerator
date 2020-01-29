@@ -19,19 +19,57 @@
       <router-link to="/freepaint">Free Paint</router-link>
     </li>
     <li></li>
-    <li>Save</li>
+    <li @click="saveGrid">Save</li>
     <!-- If eny generators or othere changes show save button, Not on Home, or My project site. -->
   </ul>
 </template>
 
 <script lang="ts">
 import childClick from '../functions/childClick';
+import {storeComponent} from "../store";
+
+let component: storeComponent | any = null;
 
 export default {
-    name: "YarnMenu",
-    methods: {
-        childClick
+  name: "YarnMenu",
+  methods: {
+    childClick,
+    async saveGrid() {
+      if (component == null) {
+        alert(":C");
+        return;
+      }
+      const size = component.$store.state.gridSize.size;
+      const grid = component.$store.state.gridColorList;
+      const name = prompt("Name your project", (new Date()).toISOString().substr(0, 10));
+
+      let respons = await fetch("http://localhost:8000/save",
+          {
+            method: "POST",
+            body: JSON.stringify(
+                {
+                  size,
+                  grid,
+                  name
+                }),
+            credentials: 'include'
+          });
+
+      if (!respons.ok) {
+        alert("Save failed.");
+        return;
+      }
+
+      const id = await respons.json();
+      const url = "http://localhost:8080/load/" + id; //TODO: FIX
+
+      alert("Save ok!\n" + url);
+      component.$router.push("/load/" +id);
     }
+  },
+  mounted() {
+    component = this;
+  }
 };
 </script>
 

@@ -5,8 +5,14 @@ import MainPage from "../views/MainPage.vue";
 import FreePaint from "../views/FreePaint.vue";
 import Projects from "../views/Projects.vue";
 import NewProject from "../views/NewProject.vue";
+import {yarnStore} from "@/store";
 
 Vue.use(VueRouter);
+
+export interface routerComponent {
+  $route: any;
+  $router: any;
+}
 
 const routes = [
   {
@@ -53,6 +59,11 @@ const routes = [
     path: "/newproject",
     name: "newproject",
     component: NewProject
+  },
+  {
+    path: "/load/:id",
+    name: "load",
+    component: MainPage
   }
   /*
   ,{

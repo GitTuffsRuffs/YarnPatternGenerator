@@ -96,9 +96,9 @@
 </template>
 
 <script lang="ts">
-import {gridSize, storeComponent} from "../../store";
+import {gridSize, storeComponent, yarnStoreState} from "../../store";
 
-let component: squerSettingsComponent|any = null;
+let component: squerSettingsComponent | any = null;
 
 interface squerSettingsComponent extends storeComponent, gridSize {
   activeBox: string;
@@ -108,9 +108,9 @@ const uppdateHandeler = () => {
   component.$store.commit(
       "setGridSize",
       {
-        height: component.height,
-        width: component.width,
-        size: component.size
+        height: +component.height,
+        width: +component.width,
+        size: +component.size
       });
 }
 
@@ -136,14 +136,24 @@ export default {
   mounted() {
     component = this;
 
-    const gridSize = (component as storeComponent).$store.state.gridSize;
-    component.height = gridSize.height;
-    component.width = gridSize.width;
-    component.size = gridSize.size;
+    const update = () => {
+      const gridSize = (component as storeComponent).$store.state.gridSize;
+      component.height = gridSize.height;
+      component.width = gridSize.width;
+      component.size = gridSize.size;
+    }
+
+    (component as storeComponent).$store.watch(
+        (state: yarnStoreState) => state.gridSize,
+        update
+    );
+
+    update();
   },
   watch: {
     height: uppdateHandeler,
-    width: uppdateHandeler
+    width: uppdateHandeler,
+    size: uppdateHandeler
   }
 };
 </script>

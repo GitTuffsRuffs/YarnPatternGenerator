@@ -1,10 +1,6 @@
 <template>
   <mainPage id="MainRandom">
-    <SquerSettings :acctive-box-toggle="acctiveBoxToggle"
-                   :active-box="activeBox"
-                   :height="height"
-                   :size="size"
-                   :width="width"/>
+    <SquerSettings/>
 
     <div id="Grid">
       <CanvasGrid></CanvasGrid>
@@ -110,8 +106,6 @@ import ColorPicker from 'vue-color-picker-wheel';
 import {storeComponent} from "../store";
 import SquerSettings from "../components/settings/SquerSettings.vue";
 
-window.console.log([ColorPicker, CanvasGrid]);
-
 interface gridComponent extends storeComponent {
   activeBox: string;
   activColor: string;
@@ -199,7 +193,7 @@ const startTimer = () => {
   delayTimerID = setTimeout(generateGrid, 500);
 };
 
-const rgb2hsl = (r:number, g:number, b:number) => {
+const rgb2hsl = (r: number, g: number, b: number) => {
   r /= 255;
   g /= 255;
   b /= 255;
@@ -271,7 +265,6 @@ export default {
   name: "random",
   components: {SquerSettings, CanvasGrid, ColorPicker},
   data: () => ({
-    activeBox: "Square",
     activColor: "ColorWheel",
     newcolor: "#ffffff",
     replacecolor: "",
@@ -326,23 +319,6 @@ export default {
         startTimer();
       }
     },
-
-    acctiveBoxToggle(event: Event) {
-      const span = event.currentTarget as HTMLSpanElement;
-      const name = span.getAttribute("data-name");
-
-      if (component == null || name == null) {
-        return;
-      }
-      component.activeBox = name;
-      /*
-      if (name === "Square") {
-        component.activeBox = "Square";
-      } else if (name === "Cent") {
-        component.activeBox = "Cent";
-      }*/
-    },
-
     activColorToggle(event: Event) {
       const span = event.currentTarget as HTMLSpanElement;
       const name = span.getAttribute("data-name");
@@ -362,13 +338,6 @@ export default {
   mounted() {
     component = (this as unknown) as gridComponent;
     startTimer();
-  },
-  watch: {
-    height: startTimer,
-    width: startTimer,
-    squareColors: startTimer,
-    colorLayerMatch: startTimer,
-    colorBorderMatch: startTimer
   }
 };
 </script>
