@@ -48,7 +48,7 @@ export default {
         new Date().toISOString().substr(0, 10)
       );
 
-      let respons = await fetch("http://localhost:8000/save", {
+      let respons = await fetch(component.$store.state.apiUrl.toString() + "save", {
         method: "POST",
         body: JSON.stringify({
           size,
@@ -64,7 +64,7 @@ export default {
       }
 
       const id = await respons.json();
-      const url = "http://localhost:8080/load/" + id; //TODO: FIX
+      const url = component.$store.state.apiUrl.toString()+ "load/" + id; //TODO: FIX
 
       alert("Save ok!\n" + url);
       component.$router.push("/load/" + id);

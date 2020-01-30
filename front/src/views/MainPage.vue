@@ -239,7 +239,7 @@ const uppdateGrid = async () => {
   //component.$route.params.id
   if (component.$route.name == "load") {
     let respons = await fetch(
-        "http://localhost:8000/load?id=" + component.$route.params.id,
+        component.$store.state.apiUrl.toString() + "load?id=" + component.$route.params.id,
         {
           credentials: "include"
         }

@@ -53,7 +53,7 @@ interface projectComponent extends storeComponent {
 }
 
 const loadProjects = async () => {
-  let respons = await fetch("http://localhost:8000/projects", { credentials: 'include' });
+  let respons = await fetch(component.$store.state.apiUrl.toString() + "projects", { credentials: 'include' });
 
   if (!respons.ok) {
     alert("Failed to get projects");

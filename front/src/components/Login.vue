@@ -41,7 +41,7 @@ export default {
       data.append('password', component.password); //test TODO: REMOVE LATER
 
       let respons = await fetch(
-          "http://localhost:8000/login",
+          component.$store.state.apiUrl.toString() + "login",
           {
             method: "POST",
             body: data,
