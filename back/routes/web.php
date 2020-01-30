@@ -13,18 +13,14 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/api/colors', "Controller@colors");
 
-Route::get('/colors', "Controller@colors");
+Route::post('/api/login', "Controller@login");
 
-Route::post('/login', "Controller@login");
+Route::get('/api/projectsAll', "Controller@getProjects");
 
-Route::get('/projectsAll', "Controller@getProjects");
+Route::get('/api/projects', "Controller@getProjectsByUSerId"); //->middleware("auth")
 
-Route::get('/projects', "Controller@getProjectsByUSerId"); //->middleware("auth")
+Route::post('/api/save', "Controller@saveProject");
 
-Route::post('/save', "Controller@saveProject");
-
-Route::get('/load', "Controller@loadProject");
+Route::get('/api/load', "Controller@loadProject");

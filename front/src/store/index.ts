@@ -55,7 +55,7 @@ export interface yarnStoreState {
 }
 
 const baseUrl = new URL('/', window.location as unknown as URL);
-const apiUrl = new URL('/', window.location as unknown as URL);
+const apiUrl = new URL('/api/', window.location as unknown as URL);
 if(baseUrl.port === '8080') apiUrl.port = "8000";
 
 export default new Vuex.Store({
